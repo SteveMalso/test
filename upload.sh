@@ -172,8 +172,8 @@ elif [ "$label" = "$sport_label" ]; then
              rm -rf "$queue_folder/sport"
              readarray -t files <<< "$(find "$encrypt_folder" -type f -printf '%f\n')"
 
-	     for file in "${files[@]}"; do
-
+             for file in "${files[@]}"; do
+$5
 	         encrypted_file=$(python "$encrypt_script" "$salt_file" "$password" "$encrypt_folder" "$file" "$upload_folder")
 	         rm "$encrypt_folder/$file"
                  rclone copy "$upload_folder/$encrypted_file" "$sport_destination"
