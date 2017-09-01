@@ -190,7 +190,7 @@ elif [ "$label" = "$sport_label" ]; then
              rclone copy "$upload_folder/$encrypted_file" "$sport_destination"
              rm "$upload_folder/$encrypted_file"
              python "$strm_script" "Sport" 2 3 "$name" 5 6 7 8 9
-
+#g
          fi
 
      else
