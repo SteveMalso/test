@@ -114,7 +114,7 @@ while available_space < required_space:
                 shutil.rmtree(full_path)
         else:
                 filesize = os.path.getsize(full_path)
-                filesize = fileseize * expm1(1e-9)
+                filesize = filesize * expm1(1e-9)
                 filesize = round(filesize, 2)
                 os.remove(full_path)
 
