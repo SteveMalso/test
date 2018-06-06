@@ -96,8 +96,7 @@ class SCGIRequest(object):
 		return (xmlresp, headers)
 
 def erase(hash):
-        hash = [hash]
-        hash = tuple(hash)
+        hash = tuple([hash])
         respxml = do_scgi_xmlrpc_request(host, "d.erase", hash)
 
 available_space = (disk.f_bsize * disk.f_bavail / 1024 / 1024 / 1024)
