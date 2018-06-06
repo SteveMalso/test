@@ -1,6 +1,6 @@
 import sys, os, subprocess, shutil, cStringIO as StringIO
 import xmlrpclib, urllib, urlparse, socket, re
-from math import exp, expm1
+from math import expm1
 
 from urlparse import uses_netloc
 uses_netloc.append('scgi')
