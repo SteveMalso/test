@@ -109,13 +109,11 @@ while available_space < required_space:
 
         if os.path.isdir(full_path):
                 filesize = sum(os.path.getsize(os.path.join(dirpath, filename)) for dirpath, dirnames, filenames in os.walk(full_path) for filename in filenames)
-                filesize = filesize * expm1(1e-9)
-                filesize = round(filesize, 2)
+                filesize = round(filesize * expm1(1e-9), 2)
                 shutil.rmtree(full_path)
         else:
                 filesize = os.path.getsize(full_path)
-                filesize = filesize * expm1(1e-9)
-                filesize = round(filesize, 2)
+                filesize = round(filesize * expm1(1e-9), 2)
                 os.remove(full_path)
 
         torrents = []
