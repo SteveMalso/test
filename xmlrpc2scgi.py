@@ -120,7 +120,8 @@ while available_space < required_space:
 
         torrents = []
         files = os.listdir(torrent_directory)
-        for file in files:
+
+	for file in files:
                 if file.endswith(".torrent"):
                         torrents.append(os.path.join(torrent_directory, file))
 
