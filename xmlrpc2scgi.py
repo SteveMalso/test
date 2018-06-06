@@ -1,4 +1,4 @@
-import sys, os, subprocess, cStringIO as StringIO
+import sys, os, subprocess, shutil, cStringIO as StringIO
 import xmlrpclib, urllib, urlparse, socket, re
 from math import exp, expm1
 
@@ -111,7 +111,7 @@ while available_space < required_space:
                 filesize = sum(os.path.getsize(os.path.join(dirpath, filename)) for dirpath, dirnames, filenames in os.walk(full_path) for filename in filenames)
                 filesize = filesize * expm1(1e-9)
                 filesize = round(filesize, 2)
-                os.rmdir(full_path)
+                shutil.rmtree(full_path)
         else:
                 filesize = os.path.getsize(full_path)
                 filesize = fileseize * expm1(1e-9)
