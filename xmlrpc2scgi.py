@@ -90,7 +90,7 @@ class SCGIRequest(object):
 		return (xmlresp, headers)
 
 def erase(hash):
-        xmlreq = xmlrpclib.dumps(tuple([hash]), "d.get_hash")
+        xmlreq = xmlrpclib.dumps(tuple([hash]), "d.erase")
         xmlresp = SCGIRequest(host).send(xmlreq)
         return xmlrpclib.loads(xmlresp)[0][0]
 
