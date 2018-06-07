@@ -98,7 +98,7 @@ def erase(hash):
         hash = tuple([hash])
         respxml = do_scgi_xmlrpc_request(host, "d.erase", hash)
 
-torrent_size = round(int(sys.argv[1]) / (1024*1024*1024.0), 2)
+torrent_size = round(int(sys.argv[1]) / (1024 * 1024 * 1024.0), 2)
 available_space = round(float(disk.f_bsize * disk.f_bavail) / 1024 / 1024 / 1024, 2)
 required_space = torrent_size + 5
 
