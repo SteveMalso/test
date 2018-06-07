@@ -1,8 +1,9 @@
-import sys, os, subprocess, shutil, cStringIO as StringIO
+import sys, os, subprocess, shutil, PTN, cStringIO as StringIO
 import xmlrpclib, urllib, urlparse, socket, re
-from math import expm1
-
 from urlparse import uses_netloc
+from math import expm1
+from imdbpie import Imdb
+
 uses_netloc.append('scgi')
 
 host = "scgi://127.0.0.1:5000"
@@ -94,8 +95,15 @@ class SCGIRequest(object):
 		xmlresp = fresp.read()
 		return (xmlresp, headers)
 
+imdb = Imdb()
+torrent_info = PTN.parse(sys.argv[1])
+result = imdb.get_title_versions(imdb.search_for_title(str(torrent_info['title']) + " " + str(torrent_info['year']))[0]['imdb_id'])['origins']
 
-torrent_size = round(int(sys.argv[1]) / (1024 * 1024 * 1024.0), 2)
+if str(result) != "[u'US']":
+                print "foreign"
+                quit()
+
+torrent_size = round(int(sys.argv[2]) / (1024 * 1024 * 1024.0), 2)
 available_space = round(float(disk.f_bsize * disk.f_bavail) / 1024 / 1024 / 1024, 2)
 required_space = torrent_size + 5
 
