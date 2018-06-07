@@ -4,7 +4,7 @@ sub _sendRtorrent {
         my @matches = grep { /foreign/ } @script;
 
         if ($matches[0] eq "foreign") {
-            exit;
+                exit;
          }
 
 	eval {
