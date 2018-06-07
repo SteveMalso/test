@@ -101,8 +101,8 @@ torrent_info = PTN.parse(sys.argv[1])
 result = imdb.get_title_versions(imdb.search_for_title(str(torrent_info['title']) + " " + str(torrent_info['year']))[0]['imdb_id'])['origins']
 
 if str(result) != "[u'US']":
-                print "foreign"
-                quit()
+        print "foreign"
+        quit()
 
 torrent_size = round(int(sys.argv[2]) / (1024 * 1024 * 1024.0), 2)
 available_space = round(float(disk.f_bsize * disk.f_bavail) / 1024 / 1024 / 1024, 2)
