@@ -99,7 +99,7 @@ def erase(hash):
         hash = tuple([hash])
         respxml = do_scgi_xmlrpc_request(host, "d.erase", hash)
 
-available_space = (disk.f_bsize * disk.f_bavail / 1024 / 1024 / 1024)
+available_space = round(float(disk.f_bsize * disk.f_bavail) / 1024 / 1024 / 1024, 2)
 
 while available_space < required_space:
         os.chdir(directory)
