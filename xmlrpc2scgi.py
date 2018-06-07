@@ -10,6 +10,11 @@ directory = "/home/user/rtorrent/downloads"
 torrent_directory = "/home/user/rtorrent/.session"
 disk = os.statvfs("/")
 
+def erase(hash):
+        xmlreq = xmlrpclib.dumps(tuple([hash]), "d.erase")
+        xmlresp = SCGIRequest(host).send(xmlreq)
+        return xmlrpclib.loads(xmlresp)[0][0]
+
 class SCGIRequest(object):
 
 	def __init__(self, url):
@@ -89,10 +94,6 @@ class SCGIRequest(object):
 		xmlresp = fresp.read()
 		return (xmlresp, headers)
 
-def erase(hash):
-        xmlreq = xmlrpclib.dumps(tuple([hash]), "d.erase")
-        xmlresp = SCGIRequest(host).send(xmlreq)
-        return xmlrpclib.loads(xmlresp)[0][0]
 
 torrent_size = round(int(sys.argv[1]) / (1024 * 1024 * 1024.0), 2)
 available_space = round(float(disk.f_bsize * disk.f_bavail) / 1024 / 1024 / 1024, 2)
