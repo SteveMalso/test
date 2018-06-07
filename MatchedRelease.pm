@@ -1,6 +1,6 @@
 sub _sendRtorrent {
 	my $self = shift;
-#   system("python /home/user/scripts/diskcheck.py");
+#   system("python /home/user/scripts/diskcheck.py '$self->{ti}{torrentSizeInBytes}'");
 	
 	eval {
 		my $rtAddress = _getRtAddress();
