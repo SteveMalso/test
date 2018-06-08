@@ -6,6 +6,8 @@ from imdbpie import Imdb
 
 uses_netloc.append('scgi')
 
+minimum_rating = 6
+
 host = "scgi://127.0.0.1:5000"
 directory = "/home/user/rtorrent/downloads"
 torrent_directory = "/home/user/rtorrent/.session"
@@ -98,10 +100,11 @@ class SCGIRequest(object):
 
 imdb = Imdb()
 torrent_info = PTN.parse(sys.argv[1])
-result = imdb.get_title_versions(imdb.search_for_title(str(torrent_info['title']) + " " + str(torrent_info['year']))[0]['imdb_id'])['origins']
+country = imdb.get_title_versions(imdb.search_for_title(str(torrent_info['title']) + " " + str(torrent_info['year']))[0]['imdb_id'])['origins']
+rating = imdb.get_title_ratings(imdb.search_for_title(str(torrent_info['title']) + " " + str(torrent_info['year']))[0]['imdb_id'])['rating']
 
-if str(result) != "[u'US']":
-        print "foreign"
+if str(country) != "[u'US']" or rating < minimum_rating:
+        print "exit"
         quit()
 
 torrent_size = round(int(sys.argv[2]) / (1024 * 1024 * 1024.0), 2)
