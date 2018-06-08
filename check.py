@@ -6,12 +6,11 @@ from imdbpie import Imdb
 
 uses_netloc.append('scgi')
 
-host = "scgi://127.0.0.1:5000"
+check_disk = 'yes'
 
+host = "scgi://127.0.0.1:5000"
 directory = "/home/user/rtorrent/downloads/completed"
 torrent_directory = "/home/user/rtorrent/.session"
-
-check_disk = 'yes'
 disk = os.statvfs('/')
 
 labels = {
