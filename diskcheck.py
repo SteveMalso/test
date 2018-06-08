@@ -11,7 +11,7 @@ host = "scgi://127.0.0.1:5000"
 directory = "/home/user/rtorrent/downloads/completed"
 torrent_directory = "/home/user/rtorrent/.session"
 
-check_disk = 'no'
+check_disk = 'yes'
 disk = os.statvfs('/')
 
 labels = {
