@@ -167,4 +167,4 @@ if check_disk == 'yes':
                                 erase(hash)
                                 available_space = available_space + filesize
 
-print "success"
+print 'success'
