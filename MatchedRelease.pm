@@ -1,6 +1,6 @@
 sub _sendRtorrent {
         my $self = shift;
-        my @script = split $/, `python /home/user/scripts/diskcheck.py '$self->{ti}{torrentName}' '$self->{ti}{torrentSizeInBytes}'`;
+        my @script = split $/, `python /home/user/scripts/diskcheck.py '$self->{ti}{torrentName}' '$self->{ti}{torrentSizeInBytes}' '$self->{uploadMethod}{rtLabel}'`;
 
         if ($script[0] eq "exit") {
                 exit;
