@@ -139,3 +139,5 @@ while available_space < required_space:
                         hash = os.path.splitext(os.path.basename(torrent))[0]
                         erase(hash)
                         available_space = available_space + filesize
+
+print "success"
