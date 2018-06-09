@@ -3,7 +3,7 @@ sub _sendRtorrent {
         my @script = split $/, `python /home/user/scripts/check.py '$self->{ti}{torrentName}' '$self->{uploadMethod}{rtLabel}' '$self->{ti}{torrentSizeInBytes}'`;
 
         if ($script[0] eq "exit") {
-                exit;
+                return;
          }
 
 	eval {
