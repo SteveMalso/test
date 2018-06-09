@@ -113,11 +113,15 @@ def imdb(torrent_name, minimum_rating, skip_foreign):
                         quit()
 
         if skip_foreign == 'yes':
-            country = imdb.get_title_versions(imdb.search_for_title(str(torrent_info['title']) + ' ' + str(torrent_info['year']))[0]['imdb_id'])['origins']
 
-            if str(country) != "[u'US']":
-                print 'exit'
-                quit()
+                try:
+                        country = imdb.get_title_versions(imdb.search_for_title(str(torrent_info['title']) + ' ' + str(torrent_info['year']))[0]['imdb_id'])['origins']
+                except:
+                        return
+                else:
+                        if str(country) != "[u'US']":
+                                print 'exit'
+                                quit()
 
 
 def erase(hash):
