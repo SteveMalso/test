@@ -102,11 +102,15 @@ class SCGIRequest(object):
 def imdb(torrent_name, minimum_rating, skip_foreign):
         imdb = Imdb()
         torrent_info = PTN.parse(torrent_name)
-        rating = imdb.get_title_ratings(imdb.search_for_title(str(torrent_info['title']) + ' ' + str(torrent_info['year']))[0]['imdb_id'])['rating']
 
-        if rating < minimum_rating:
-                print 'exit'
-                quit()
+	try:
+                rating = imdb.get_title_ratings(imdb.search_for_title(str(torrent_info['title']) + ' ' + str(torrent_info['year']))[0]['imdb_id'])['rating']
+        except:
+                return
+        else:
+                if rating < minimum_rating:
+                        print 'exit'
+                        quit()
 
         if skip_foreign == 'yes':
             country = imdb.get_title_versions(imdb.search_for_title(str(torrent_info['title']) + ' ' + str(torrent_info['year']))[0]['imdb_id'])['origins']
