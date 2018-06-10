@@ -119,7 +119,7 @@ def imdb(torrent_name, minimum_rating, skip_foreign):
                 except:
                         return
                 else:
-                        if "u'US'" not in str(country):
+                        if 'US' not in country:
                                 print 'exit'
                                 quit()
 
