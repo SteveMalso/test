@@ -130,9 +130,14 @@ def erase(hash):
         return xmlrpclib.loads(xmlresp)[0][0]
 
 
-torrent_name = str(sys.argv[1])
-label = str(sys.argv[2])
-torrent_size = int(sys.argv[3])
+try:
+        torrent_name = str(sys.argv[1])
+        label = str(sys.argv[2])
+        torrent_size = int(sys.argv[3])
+except:
+        torrent_size = int(sys.argv[1])
+        torrent_name = None
+        label = None
 
 if label in labels:
         minimum_rating = labels[label][0]
