@@ -105,20 +105,24 @@ def imdb(torrent_name, minimum_rating, skip_foreign):
 
         try:
                 rating = imdb.get_title_ratings(imdb.search_for_title(str(torrent_info['title']) + ' ' + str(torrent_info['year']))[0]['imdb_id'])['rating']
-
+        except:
+                return
+        else:
                 if rating < minimum_rating:
                         print 'exit'
                         quit()
 
-                if skip_foreign == 'yes':
+        if skip_foreign == 'yes':
 
+                try:
                         country = imdb.get_title_versions(imdb.search_for_title(str(torrent_info['title']) + ' ' + str(torrent_info['year']))[0]['imdb_id'])['origins']
-
+                except:
+                        return
+                else:
                         if str(country) != "[u'US']":
                                 print 'exit'
                                 quit()
-        except:
-                return
+
 
 def erase(hash):
         xmlreq = xmlrpclib.dumps(tuple([hash]), 'd.erase')
@@ -170,4 +174,4 @@ if check_disk == 'yes':
                                 erase(hash)
                                 available_space = available_space + filesize
 
-print 'success'
+print 'finish'
