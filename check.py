@@ -9,7 +9,7 @@ uses_netloc.append('scgi')
 check_disk = 'yes'
 
 host = "scgi://127.0.0.1:5000"
-directory = "/home/user/rtorrent/downloads/completed"
+scan_directory = "/home/user/rtorrent/downloads/completed"
 torrent_directory = "/home/user/rtorrent/.session"
 disk = os.statvfs('/')
 
@@ -145,10 +145,10 @@ if check_disk == 'yes':
         required_space = torrent_size + 5
 
         while available_space < required_space:
-                os.chdir(directory)
+                os.chdir(scan_directory)
                 files = sorted(os.listdir(os.getcwd()), key=os.path.getmtime)
                 oldest_file = files[0]
-                full_path = os.path.join(directory, oldest_file)
+                full_path = os.path.join(scan_directory, oldest_file)
 
                 if os.path.isdir(full_path):
                         filesize = sum(os.path.getsize(os.path.join(dirpath, filename)) for dirpath, dirnames, filenames in os.walk(full_path) for filename in filenames)
