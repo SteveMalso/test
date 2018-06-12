@@ -4,7 +4,7 @@ sub _sendRtorrent {
 
         if ($script[0] eq "exit") {
                 return;
-         }
+        }
 
 	eval {
 		my $rtAddress = _getRtAddress();
