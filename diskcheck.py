@@ -11,13 +11,13 @@ enable_labels_disk = 'yes'
 host = "scgi://127.0.0.1:5000"
 disk = os.statvfs('/')
 
-minimum_filesize = 20
-minimum_ratio = 2
+minimum_filesize = 5
+minimum_ratio = 1.2
 labels_disk = ['TV', 'Movies']
 
 labels_imdb = {
-		"Hollywood Blockbusters" : [7, 'yes'],
-                "Bollywood Classics" : [8, 'no'],
+		     "Hollywood Blockbusters" : [7, 'yes'],
+                     "Bollywood Classics" : [8, 'no'],
 	      }
 
 class SCGIRequest(object):
