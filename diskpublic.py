@@ -184,5 +184,7 @@ if enable_disk_check == 'yes':
                 xmlrpc('d.erase', tuple([hash]))
                 del torrents[oldest_torrent]
                 available_space = available_space + filesize
+                if not torrents:
+                        break
 
 print 'finish'
