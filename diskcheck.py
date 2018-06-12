@@ -190,4 +190,7 @@ if enable_disk_check == 'yes':
                 del torrents[oldest_torrent]
                 available_space = available_space + filesize
 
+                if not torrents:
+                        break
+
 print 'finish'
