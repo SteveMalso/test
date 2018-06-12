@@ -132,16 +132,16 @@ def xmlrpc(methodname, hash):
 
 try:
         torrent_name = str(sys.argv[1])
-        label = str(sys.argv[2])
+        torrent_label = str(sys.argv[2])
         torrent_size = int(sys.argv[3])
 except:
         torrent_size = int(sys.argv[1])
         torrent_name = None
-        label = None
+        torrent_label = None
 
 if label in labels_imdb:
-        minimum_rating = labels_imdb[label][0]
-        skip_foreign = labels_imdb[label][1]
+        minimum_rating = labels_imdb[torrent_label][0]
+        skip_foreign = labels_imdb[torrent_label][1]
         imdb(torrent_name, minimum_rating, skip_foreign)
 
 
