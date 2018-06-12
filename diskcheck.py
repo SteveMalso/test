@@ -14,7 +14,7 @@ disk = os.statvfs('/')
 
 minimum_filesize = 5
 minimum_ratio = 1.2
-labels_disk = ['TV', 'Movies']
+labels_disk = ['TV', 'Movies', 'Crap']
 
 labels_imdb = {
 		     "Hollywood Blockbusters" : [7, 'yes'],
