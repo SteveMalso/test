@@ -139,7 +139,7 @@ except:
         torrent_name = None
         torrent_label = None
 
-if label in labels_imdb:
+if torrent_label in labels_imdb:
         minimum_rating = labels_imdb[torrent_label][0]
         skip_foreign = labels_imdb[torrent_label][1]
         imdb(torrent_name, minimum_rating, skip_foreign)
