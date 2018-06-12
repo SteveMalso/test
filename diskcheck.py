@@ -15,11 +15,10 @@ minimum_filesize = 20
 minimum_ratio = 2
 labels_disk = ['TV', 'Movies']
 
-labels_imdb = {
+labels = {
 		"Hollywood Blockbusters" : [7, 'yes'],
                 "Bollywood Classics" : [8, 'no'],
-              }
-
+	 }
 
 class SCGIRequest(object):
 
