@@ -141,7 +141,6 @@ if torrent_label in labels_imdb:
         skip_foreign = labels_imdb[torrent_label][1]
         imdb(torrent_name, minimum_rating, skip_foreign)
 
-
 if enable_disk_check == 'yes':
 
         torrent_size = round(torrent_size / (1024 * 1024 * 1024.0), 2)
