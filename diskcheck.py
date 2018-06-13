@@ -147,7 +147,6 @@ if torrent_label in labels_imdb:
 
 
 if enable_disk_check == 'yes':
-
         torrent_size = round(torrent_size / (1024 * 1024 * 1024.0), 2)
         available_space = round(float(disk.f_bsize * disk.f_bavail) / 1024 / 1024 / 1024, 2)
         required_space = torrent_size + 5
@@ -161,9 +160,9 @@ if enable_disk_check == 'yes':
                         for hash in hashes:
                                 date = datetime.utcfromtimestamp(xmlrpc('d.creation_date', tuple([hash]))).strftime('%Y/%m/%d')
                                 filesize = round(xmlrpc('d.size_bytes', tuple([hash])) / (1024 * 1024 * 1024.0), 2)
-                                base_path = xmlrpc('d.base_path', tuple([hash]))
                                 ratio = xmlrpc('d.ratio', tuple([hash])) / 1000.0
                                 label = urllib.unquote(xmlrpc('d.custom1', tuple([hash])))
+                                base_path = xmlrpc('d.base_path', tuple([hash]))
                                 torrents[date] = filesize, ratio, label, base_path, hash
 
                 oldest_torrent = min(torrents)
