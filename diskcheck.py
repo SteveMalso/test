@@ -14,6 +14,8 @@ disk = os.statvfs('/')
 
 minimum_filesize = 5
 minimum_ratio = 1.2
+minimum_age = 15
+
 labels_disk = ['TV', 'Movies', 'Crap']
 
 labels_imdb = {
@@ -131,6 +133,7 @@ def xmlrpc(methodname, hash):
         xmlresp = SCGIRequest(host).send(xmlreq)
         return xmlrpclib.loads(xmlresp)[0][0]
 
+
 try:
         torrent_name = str(sys.argv[1])
         torrent_label = str(sys.argv[2])
@@ -157,7 +160,7 @@ if enable_disk_check == 'yes':
                         hashes = xmlrpc('download_list', tuple([]))
 
                         for hash in hashes:
-                                date = datetime.utcfromtimestamp(xmlrpc('d.creation_date', tuple([hash]))).strftime('%Y/%m/%d')
+                                date = datetime.utcfromtimestamp(xmlrpc('d.creation_date', tuple([hash])))
                                 filesize = round(xmlrpc('d.size_bytes', tuple([hash])) / (1024 * 1024 * 1024.0), 2)
                                 ratio = xmlrpc('d.ratio', tuple([hash])) / 1000.0
                                 label = urllib.unquote(xmlrpc('d.custom1', tuple([hash])))
@@ -165,13 +168,14 @@ if enable_disk_check == 'yes':
                                 torrents[date] = filesize, ratio, label, base_path, hash
 
                 oldest_torrent = min(torrents)
+                age = (datetime.strptime(str(datetime.today().strftime('%m/%d/%Y')), '%m/%d/%Y') - datetime.strptime(oldest_torrent.strftime('%m/%d/%Y'), '%m/%d/%Y')).days
                 filesize = torrents[oldest_torrent][0]
                 ratio = torrents[oldest_torrent][1]
                 label = torrents[oldest_torrent][2]
                 base_path = torrents[oldest_torrent][3]
                 hash = torrents[oldest_torrent][4]
 
-                if filesize < minimum_filesize or ratio < minimum_ratio or enable_labels_disk == 'yes' and label not in labels_disk:
+                if age < minimum_age or filesize < minimum_filesize or ratio < minimum_ratio or enable_labels_disk == 'yes' and label not in labels_disk:
                         del torrents[oldest_torrent]
 
                         if not torrents:
