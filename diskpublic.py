@@ -155,7 +155,7 @@ if enable_disk_check == 'yes':
                         hashes = xmlrpc('download_list', tuple([]))
 
                         for hash in hashes:
-                                date = datetime.utcfromtimestamp(xmlrpc('d.creation_date', tuple([hash]))).strftime('%Y/%m/%d')
+                                date = datetime.utcfromtimestamp(xmlrpc('d.creation_date', tuple([hash])))
                                 filesize = round(xmlrpc('d.size_bytes', tuple([hash])) / (1024 * 1024 * 1024.0), 2)
                                 ratio = xmlrpc('d.ratio', tuple([hash])) / 1000.0
                                 label = urllib.unquote(xmlrpc('d.custom1', tuple([hash])))
