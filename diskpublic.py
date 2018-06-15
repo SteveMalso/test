@@ -170,7 +170,7 @@ if enable_disk_check == 'yes':
                 base_path = torrents[oldest_torrent][3]
                 hash = torrents[oldest_torrent][4]
 
-                if age < minimum_age or filesize < minimum_filesize or ratio < minimum_ratio or enable_labels_disk == 'yes' and label not in labels_disk:
+                if age < minimum_age or filesize < minimum_filesize or ratio < minimum_ratio or (enable_labels_disk == 'yes' and label not in labels_disk):
                         del torrents[oldest_torrent]
 
                         if not torrents:
