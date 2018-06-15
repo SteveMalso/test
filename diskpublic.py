@@ -163,7 +163,7 @@ if enable_disk_check == 'yes':
                                 torrents[date] = filesize, ratio, label, base_path, hash
 
                 oldest_torrent = min(torrents)
-                age = (datetime.strptime(str(datetime.today().strftime('%m/%d/%Y')), '%m/%d/%Y') - datetime.strptime(oldest_torrent.strftime('%m/%d/%Y'), '%m/%d/%Y')).days
+                age = (datetime.strptime(datetime.today().strftime('%m/%d/%Y'), '%m/%d/%Y') - datetime.strptime(oldest_torrent.strftime('%m/%d/%Y'), '%m/%d/%Y')).days
                 filesize = torrents[oldest_torrent][0]
                 ratio = torrents[oldest_torrent][1]
                 label = torrents[oldest_torrent][2]
