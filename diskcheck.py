@@ -126,8 +126,9 @@ if torrent_label in labels_imdb:
         torrent_info = PTN.parse(torrent_name)
 
         try:
-                rating = imdb.get_title_ratings(imdb.search_for_title(str(torrent_info['title']) + ' ' + str(torrent_info['year']))[0]['imdb_id'])['rating']
-                votes = imdb.get_title_ratings(imdb.search_for_title(str(torrent_info['title']) + ' ' + str(torrent_info['year']))[0]['imdb_id'])['ratingCount']
+                search = imdb.get_title_ratings(imdb.search_for_title(str(torrent_info['title']) + ' ' + str(torrent_info['year']))[0]['imdb_id'])
+                rating = search['rating']
+                votes = search['ratingCount']
                 country = imdb.get_title_versions(imdb.search_for_title(str(torrent_info['title']) + ' ' + str(torrent_info['year']))[0]['imdb_id'])['origins']
         except:
                 pass
