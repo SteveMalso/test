@@ -103,8 +103,25 @@ class SCGIRequest(object):
 		return (xmlresp, headers)
 
 
-def imdb(torrent_name, minimum_rating, skip_foreign):
+def xmlrpc(methodname, hash):
+        xmlreq = xmlrpclib.dumps(hash, methodname)
+        xmlresp = SCGIRequest(host).send(xmlreq)
+        return xmlrpclib.loads(xmlresp)[0][0]
+
+
+try:
+        torrent_name = str(sys.argv[1])
+        torrent_label = str(sys.argv[2])
+        torrent_size = int(sys.argv[3])
+except:
+        torrent_size = int(sys.argv[1])
+        torrent_name = None
+        torrent_label = None
+
+if torrent_label in labels_imdb:
         imdb = Imdb()
+        minimum_rating = labels_imdb[torrent_label][0]
+        skip_foreign = labels_imdb[torrent_label][1]
         torrent_info = PTN.parse(torrent_name)
 
         try:
@@ -126,27 +143,6 @@ def imdb(torrent_name, minimum_rating, skip_foreign):
                         if 'US' not in country:
                                 print 'exit'
                                 quit()
-
-
-def xmlrpc(methodname, hash):
-        xmlreq = xmlrpclib.dumps(hash, methodname)
-        xmlresp = SCGIRequest(host).send(xmlreq)
-        return xmlrpclib.loads(xmlresp)[0][0]
-
-
-try:
-        torrent_name = str(sys.argv[1])
-        torrent_label = str(sys.argv[2])
-        torrent_size = int(sys.argv[3])
-except:
-        torrent_size = int(sys.argv[1])
-        torrent_name = None
-        torrent_label = None
-
-if torrent_label in labels_imdb:
-        minimum_rating = labels_imdb[torrent_label][0]
-        skip_foreign = labels_imdb[torrent_label][1]
-        imdb(torrent_name, minimum_rating, skip_foreign)
 
 if enable_disk_check == 'yes':
         torrent_size = round(torrent_size / (1024 * 1024 * 1024.0), 2)
