@@ -127,7 +127,7 @@ if torrent_label in labels_imdb:
         try:
                 rating = imdb.get_title_ratings(imdb.search_for_title(str(torrent_info['title']) + ' ' + str(torrent_info['year']))[0]['imdb_id'])['rating']
         except:
-                return
+                pass
         else:
                 if rating < minimum_rating:
                         print 'exit'
@@ -138,7 +138,7 @@ if torrent_label in labels_imdb:
                 try:
                         country = imdb.get_title_versions(imdb.search_for_title(str(torrent_info['title']) + ' ' + str(torrent_info['year']))[0]['imdb_id'])['origins']
                 except:
-                        return
+                        pass
                 else:
                         if 'US' not in country:
                                 print 'exit'
