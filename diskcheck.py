@@ -19,8 +19,8 @@ minimum_age = 15
 labels_disk = ['TV', 'Movies', 'Crap']
 
 labels_imdb = {
-		     "Hollywood Blockbusters" : [7, 'yes'],
-                     "Bollywood Classics" : [8, 'no'],
+		     "Hollywood Blockbusters" : [7, 50000, 'yes'],
+                     "Bollywood Classics" : [8, 50000, 'no'],
 	      }
 
 class SCGIRequest(object):
@@ -121,28 +121,20 @@ except:
 if torrent_label in labels_imdb:
         imdb = Imdb()
         minimum_rating = labels_imdb[torrent_label][0]
-        skip_foreign = labels_imdb[torrent_label][1]
+        minimum_votes = labels_imdb[torrent_label][1]
+        skip_foreign = labels_imdb[torrent_label][2]
         torrent_info = PTN.parse(torrent_name)
 
         try:
                 rating = imdb.get_title_ratings(imdb.search_for_title(str(torrent_info['title']) + ' ' + str(torrent_info['year']))[0]['imdb_id'])['rating']
+                votes = imdb.get_title_ratings(imdb.search_for_title(str(torrent_info['title']) + ' ' + str(torrent_info['year']))[0]['imdb_id'])['ratingCount']
+                country = imdb.get_title_versions(imdb.search_for_title(str(torrent_info['title']) + ' ' + str(torrent_info['year']))[0]['imdb_id'])['origins']
         except:
                 pass
         else:
-                if rating < minimum_rating:
+                if rating < minimum_rating or votes < minimum_votes or (skip_foreign == 'yes' and 'US' not in country):
                         print 'exit'
                         quit()
-
-        if skip_foreign == 'yes':
-
-                try:
-                        country = imdb.get_title_versions(imdb.search_for_title(str(torrent_info['title']) + ' ' + str(torrent_info['year']))[0]['imdb_id'])['origins']
-                except:
-                        pass
-                else:
-                        if 'US' not in country:
-                                print 'exit'
-                                quit()
 
 if enable_disk_check == 'yes':
         torrent_size = round(torrent_size / (1024 * 1024 * 1024.0), 2)
