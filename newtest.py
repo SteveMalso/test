@@ -37,7 +37,7 @@ if enable_disk_check == 'yes':
                 if fallback == 'no':
                         if age < minimum_age or filesize < minimum_filesize or ratio < minimum_ratio or (enable_labels_disk == 'yes' and label not in labels_disk):
 
-                                if enable_fallback == 'yes' and age > minimum_age and filesize > minimum_filesize or enable_labels_disk == 'yes' and label in labels_disk:
+                                if enable_fallback == 'yes' and age >= minimum_age and filesize >= minimum_filesize or enable_labels_disk == 'yes' and label in labels_disk:
                                         fallback_torrents[age] = filesize, base_path, hash
 
                                 del torrents[oldest_torrent]
