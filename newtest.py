@@ -3,7 +3,7 @@ if enable_disk_check == 'yes':
         available_space = round(float(disk.f_bsize * disk.f_bavail) / 1024 / 1024 / 1024, 2)
         required_space = torrent_size + 5
         torrents = {}
-        fallback_list = {}
+        fallback_torrents = {}
         fallback = 'no'
 
         while available_space < required_space:
@@ -29,22 +29,22 @@ if enable_disk_check == 'yes':
                         hash = torrents[oldest_torrent][4]
 
                 else:
-                        oldest_torrent = min(fallback_list)
-                        filesize = fallback_list[oldest_torrent][0]
-                        base_path = fallback_list[oldest_torrent][1]
-                        hash = fallback_list[oldest_torrent][2]
+                        oldest_torrent = min(fallback_torrents)
+                        filesize = fallback_torrents[oldest_torrent][0]
+                        base_path = fallback_torrents[oldest_torrent][1]
+                        hash = fallback_torrents[oldest_torrent][2]
 
                 if fallback == 'no':
                         if age < minimum_age or filesize < minimum_filesize or ratio < minimum_ratio or (enable_labels_disk == 'yes' and label not in labels_disk):
 
                                 if (enable_fallback == 'yes' and enable_labels_disk == 'yes' and label in labels_disk) and age > minimum_age or filesize > minimum_filesize:
-                                        fallback_list[age] = filesize, base_path, hash
+                                        fallback_torrents[age] = filesize, base_path, hash
 
                                 del torrents[oldest_torrent]
 
                                 if not torrents:
 
-                                        if enable_fallback == 'yes' and if fallback_list:
+                                        if enable_fallback == 'yes' and if fallback_torrents:
                                                 fallback = 'yes'
                                                 continue
 
@@ -58,10 +58,15 @@ if enable_disk_check == 'yes':
                         os.remove(base_path)
 
                 xmlrpc('d.erase', tuple([hash]))
-                del torrents[oldest_torrent]
+
+                if fallback == 'no':
+                        del torrents[oldest_torrent]
+                else:
+                        del fallback_torrents[oldest_torrent]
+
                 available_space = available_space + filesize
 
-                if not torrents and if not fallback_list:
+                if not torrents and if not fallback_torrents:
                         break
 
 print 'finish'
