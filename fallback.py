@@ -8,6 +8,7 @@ uses_netloc.append('scgi')
 
 enable_disk_check = 'yes'
 enable_labels_disk = 'yes'
+enable_fallback = 'yes'
 
 host = 'scgi://127.0.0.1:5000'
 disk = os.statvfs('/')
