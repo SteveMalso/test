@@ -1,8 +1,13 @@
-import sys, os, shutil, PTN, cStringIO as StringIO
+import sys, os, shutil, cStringIO as StringIO
 import xmlrpclib, urllib, urlparse, socket, re
 from urlparse import uses_netloc
 from datetime import datetime
-from imdbpie import Imdb
+
+try:
+        import PTN
+        from imdbpie import Imdb
+except:
+        pass
 
 uses_netloc.append('scgi')
 
