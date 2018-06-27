@@ -176,7 +176,6 @@ if enable_disk_check == 'yes':
                         label = torrents[oldest_torrent][2]
                         base_path = torrents[oldest_torrent][3]
                         hash = torrents[oldest_torrent][4]
-
                 else:
                         oldest_torrent = max(fallback_torrents)
                         filesize = fallback_torrents[oldest_torrent][0]
