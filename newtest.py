@@ -29,7 +29,7 @@ if enable_disk_check == 'yes':
                         hash = torrents[oldest_torrent][4]
 
                 else:
-                        oldest_torrent = min(fallback_torrents)
+                        oldest_torrent = max(fallback_torrents)
                         filesize = fallback_torrents[oldest_torrent][0]
                         base_path = fallback_torrents[oldest_torrent][1]
                         hash = fallback_torrents[oldest_torrent][2]
