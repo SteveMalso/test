@@ -20,8 +20,8 @@ minimum_age = 15
 labels_disk = ['TV', 'Movies', 'Crap']
 
 labels_imdb = {
-		     "Hollywood Blockbusters" : [7, 'yes'],
-                     "Bollywood Classics" : [8, 'no'],
+		     "Hollywood Blockbusters" : [7, 80000, 'yes'],
+                     "Bollywood Classics" : [8, 60000, 'no'],
 	      }
 
 class SCGIRequest(object):
@@ -104,16 +104,18 @@ class SCGIRequest(object):
 		return (xmlresp, headers)
 
 
-def imdb(torrent_name, minimum_rating, skip_foreign):
+def imdb(torrent_name, minimum_rating, minimum_votes, skip_foreign):
         imdb = Imdb()
         torrent_info = PTN.parse(torrent_name)
 
         try:
-                rating = imdb.get_title_ratings(imdb.search_for_title(str(torrent_info['title']) + ' ' + str(torrent_info['year']))[0]['imdb_id'])['rating']
+                search = imdb.get_title_ratings(imdb.search_for_title(str(torrent_info['title']) + ' ' + str(torrent_info['year']))[0]['imdb_id'])
+                rating = search['rating']
+                votes = search['ratingCount']
         except:
                 return
         else:
-                if rating < minimum_rating:
+                if rating < minimum_rating or votes < minimum_votes:
                         print 'exit'
                         quit()
 
@@ -141,8 +143,9 @@ torrent_size = int(sys.argv[3])
 
 if torrent_label in labels_imdb:
         minimum_rating = labels_imdb[torrent_label][0]
-        skip_foreign = labels_imdb[torrent_label][1]
-        imdb(torrent_name, minimum_rating, skip_foreign)
+        minimum_votes = labels_imdb[torrent_label][1]
+        skip_foreign = labels_imdb[torrent_label][2]
+        imdb(torrent_name, minimum_rating, minimum_votes, skip_foreign)
 
 if enable_disk_check == 'yes':
         torrent_size = round(torrent_size / (1024 * 1024 * 1024.0), 2)
