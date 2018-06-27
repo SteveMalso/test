@@ -37,14 +37,14 @@ if enable_disk_check == 'yes':
                 if fallback == 'no':
                         if age < minimum_age or filesize < minimum_filesize or ratio < minimum_ratio or (enable_labels_disk == 'yes' and label not in labels_disk):
 
-                                if enable_fallback == 'yes' and age >= minimum_age and filesize >= minimum_filesize or enable_labels_disk == 'yes' and label in labels_disk:
+                                if (enable_fallback == 'yes' and age >= minimum_age and filesize >= minimum_filesize) and (enable_labels_disk == 'yes' and label in labels_disk or enable_labels_disk == 'no'):
                                         fallback_torrents[age] = filesize, base_path, hash
 
                                 del torrents[oldest_torrent]
 
                                 if not torrents:
 
-                                        if enable_fallback == 'yes' and if fallback_torrents:
+                                        if enable_fallback == 'yes' and fallback_torrents:
                                                 fallback = 'yes'
                                                 continue
 
@@ -66,7 +66,7 @@ if enable_disk_check == 'yes':
 
                 available_space = available_space + filesize
 
-                if not torrents and if not fallback_torrents:
+                if not torrents and not fallback_torrents:
                         break
 
 print 'finish'
