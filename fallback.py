@@ -33,8 +33,8 @@ labels_imdb = {
 class SCGIRequest(object):
 
 	def __init__(self, url):
-		self.url=url
-		self.resp_headers=[]
+		self.url = url
+		self.resp_headers = []
 
 	def __send(self, scgireq):
 		scheme, netloc, path, query, frag = urlparse.urlsplit(self.url)
@@ -189,6 +189,7 @@ if enable_disk_check == 'yes':
                         hash = fallback_torrents[oldest_torrent][2]
 
                 if fallback == 'no':
+
                         if age < minimum_age or filesize < minimum_filesize or ratio < minimum_ratio or (enable_labels_disk == 'yes' and label not in labels_disk):
 
                                 if (enable_fallback1 == 'yes' and filesize >= minimum_filesize and age >= minimum_age and ratio < minimum_ratio) and (enable_labels_disk == 'yes' and label in labels_disk or enable_labels_disk == 'no'):
