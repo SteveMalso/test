@@ -200,7 +200,7 @@ if enable_disk_check == 'yes':
 
                                 if not torrents:
 
-                                        if enable_fallback == 'yes' and fallback_torrents:
+                                        if (enable_fallback1 == 'yes' or enable_fallback2 == 'yes') and fallback_torrents:
                                                 fallback = 'yes'
                                                 continue
 
