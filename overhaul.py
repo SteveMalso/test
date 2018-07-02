@@ -1,4 +1,4 @@
-import sys, os, cStringIO as StringIO
+import sys, os, shutil, cStringIO as StringIO
 import xmlrpclib, urllib, urlparse, socket, re
 from urlparse import uses_netloc
 from datetime import datetime
