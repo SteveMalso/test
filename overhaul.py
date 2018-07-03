@@ -9,9 +9,12 @@ try:
 except:
         pass
 
+yes = 'yes'
+no = 'no'
+
 uses_netloc.append('scgi')
 
-enable_disk_check = 'yes'
+enable_disk_check = yes
 
 host = 'scgi://127.0.0.1:5000'
 disk = os.statvfs('/')
@@ -24,10 +27,10 @@ minimum_filesize = 5
 minimum_age = 7
 minimum_ratio = 1.2
 
-# Fallback1 - Only the age of a torrent must be higher or equal to this number to be deleted - 'no' to disable
-fallback1 = 'no'
+# Fallback1 - Only the age of a torrent must be higher or equal to this number to be deleted - no to disable
+fallback1 = no
 
-# Fallback2 - Only the ratio of a torrent must be higher or equal to this number to be deleted - 'no' to disable
+# Fallback2 - Only the ratio of a torrent must be higher or equal to this number to be deleted - no to disable
 fallback2 = 1.4
 
 # End of General Rules
@@ -38,14 +41,14 @@ trackers = {}
 
 # Example
 #trackers = {
-#                   "redacted.ch" : [1, 7, 1.2, 'no', 'no'],
+#                   "redacted.ch" : [1, 7, 1.2, no, no],
 #                   "hd-torrents.org" : [3, 5, 1.3, 9, 1.3],
-#                   "privatehd.to" : [5, 6, 1.2, 12, 'no'],
-#                   "apollo.rip" : [2, 5, 1.4, 'no', 1.8],
+#                   "privatehd.to" : [5, 6, 1.2, 12, no],
+#                   "apollo.rip" : [2, 5, 1.4, no, 1.8],
 #           }
 
-# Only delete torrents from trackers in your tracker dictionary ('yes'/'no')
-trackers_only = 'yes'
+# Only delete torrents from trackers that have a tracker rule (yes/no)
+trackers_only = yes
 
 # Only delete torrents that have labels in this list - Fill to enable
 labels_disk = []
@@ -56,13 +59,13 @@ labels_disk = []
 
 
 # IMDB Criteria - Fill to enable
-# Value Order - 1. IMDB Rating 2. Minimum Votes 3. Skip Foreign Movies ('yes'/'no')
+# Value Order - 1. IMDB Rating 2. Minimum Votes 3. Skip Foreign Movies (yes/no)
 labels_imdb = {}
 
 # Example
 #labels_imdb = {
-#                     "Hollywood Blockbusters" : [7, 80000, 'yes'],
-#                     "Bollywood Classics" : [8, 60000, 'no'],
+#                     "Hollywood Blockbusters" : [7, 80000, yes],
+#                     "Bollywood Classics" : [8, 60000, no],
 #              }
 
 
