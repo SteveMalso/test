@@ -18,17 +18,17 @@ enable_disk_check = 'yes'
 
 # General rules
 
-# Fallback1 - Only the age of a torrent must be higher or equal to this number to be deleted - 'no' to disable
-fallback1 = 'no'
-
-# Fallback2 - Only the ratio of a torrent must be higher or equal to this number to be deleted - 'no' to disable
-fallback2 = 1.4
-
 # Filesize in Gigabytes
 minimum_filesize = 5
 minimum_ratio = 1.2
 # Age in Days
 minimum_age = 7
+
+# Fallback1 - Only the age of a torrent must be higher or equal to this number to be deleted - 'no' to disable
+fallback1 = 'no'
+
+# Fallback2 - Only the ratio of a torrent must be higher or equal to this number to be deleted - 'no' to disable
+fallback2 = 1.4
 
 # Tracker rules will override general rules and force the script to only delete torrents from specified trackers - Fill to enable
 # Value order - 1. Minimum Filesize (GB) 2. Minimum Age 3. Minimum Ratio 4. Fallback1 5. Fallback2
