@@ -252,7 +252,6 @@ if enable_disk_check == 'yes':
                                         break
 
                                 continue
-
                 else:
                         oldest_torrent = min(fallback_torrents)
                         base_path = fallback_torrents[oldest_torrent][0]
