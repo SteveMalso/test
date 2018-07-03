@@ -44,7 +44,7 @@ trackers = {}
 #                   "apollo.rip" : [2, 5, 1.4, 'no', 1.8],
 #           }
 
-# Only delete torrents from trackers in tracker dictionary ('yes'/'no')
+# Only delete torrents from trackers in your tracker dictionary ('yes'/'no')
 trackers_only = 'yes'
 
 # Only delete torrents that have labels in this list - Fill to enable
