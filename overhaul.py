@@ -32,7 +32,7 @@ fallback2 = 1.4
 
 # End of General Rules
 
-# Tracker Rules will override General Rules and force the script to only delete torrents from specified trackers - Fill to enable
+# Tracker Rules will override General Rules - Fill to enable
 # Value Order - 1. Minimum Filesize (GB) 2. Minimum Age 3. Minimum Ratio 4. Fallback1 5. Fallback2
 trackers = {}
 
@@ -44,6 +44,8 @@ trackers = {}
 #                   "apollo.rip" : [2, 5, 1.4, 'no', 1.8],
 #           }
 
+# Only delete torrents from trackers in tracker dictionary ('yes'/'no')
+trackers_only = 'yes'
 
 # Only delete torrents that have labels in this list - Fill to enable
 labels_disk = []
@@ -227,13 +229,14 @@ if enable_disk_check == 'yes':
                                         minimum_ratio = trackers[rule][2]
                                         fallback1 = trackers[rule][3]
                                         fallback2 = trackers[rule][4]
-                                else:
-                                       del torrents[oldest_torrent]
 
-                                       if not torrents and not fallback_torrents:
-                                               break
+                                if not rule and trackers_only == 'yes':
+                                        del torrents[oldest_torrent]
 
-                                       continue
+                                        if not torrents and not fallback_torrents:
+                                                break
+
+                                        continue
 
                         if age < minimum_age or filesize < minimum_filesize or ratio < minimum_ratio or (labels_disk and label not in labels_disk):
 
