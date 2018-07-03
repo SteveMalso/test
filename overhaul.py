@@ -32,7 +32,7 @@ fallback2 = 1.4
 
 # End of General Rules
 
-# Tracker Rules will override general rules and force the script to only delete torrents from specified trackers - Fill to enable
+# Tracker Rules will override General Rules and force the script to only delete torrents from specified trackers - Fill to enable
 # Value Order - 1. Minimum Filesize (GB) 2. Minimum Age 3. Minimum Ratio 4. Fallback1 5. Fallback2
 trackers = {}
 
