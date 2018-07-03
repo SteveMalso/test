@@ -30,6 +30,8 @@ fallback1 = 'no'
 # Fallback2 - Only the ratio of a torrent must be higher or equal to this number to be deleted - 'no' to disable
 fallback2 = 1.4
 
+# End of General Rules
+
 # Tracker Rules will override general rules and force the script to only delete torrents from specified trackers - Fill to enable
 # Value Order - 1. Minimum Filesize (GB) 2. Minimum Age 3. Minimum Ratio 4. Fallback1 5. Fallback2
 trackers = {}
