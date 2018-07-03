@@ -27,16 +27,16 @@ minimum_filesize = 5
 minimum_age = 7
 minimum_ratio = 1.2
 
-# Fallback1 - Only the age of a torrent must be higher or equal to this number to be deleted - no to disable
-fallback1 = no
+# Fallback Age - Only the age of a torrent must be higher or equal to this number to be deleted - no to disable
+fallback_age = no
 
-# Fallback2 - Only the ratio of a torrent must be higher or equal to this number to be deleted - no to disable
-fallback2 = 1.4
+# Fallback Ratio - Only the ratio of a torrent must be higher or equal to this number to be deleted - no to disable
+fallback_ratio = 1.4
 
 # End of General Rules
 
 # Tracker Rules will override General Rules - Fill to enable
-# Value Order - 1. Minimum Filesize (GB) 2. Minimum Age 3. Minimum Ratio 4. Fallback1 5. Fallback2
+# Value Order - 1. Minimum Filesize (GB) 2. Minimum Age 3. Minimum Ratio 4. Fallback Age 5. Fallback Ratio
 trackers = {}
 
 # Example
@@ -230,8 +230,8 @@ if enable_disk_check == 'yes':
                                         minimum_filesize = trackers[rule][0]
                                         minimum_age = trackers[rule][1]
                                         minimum_ratio = trackers[rule][2]
-                                        fallback1 = trackers[rule][3]
-                                        fallback2 = trackers[rule][4]
+                                        fallback_age = trackers[rule][3]
+                                        fallback_ratio = trackers[rule][4]
 
                                 if not rule and trackers_only == 'yes':
                                         del torrents[oldest_torrent]
@@ -243,9 +243,9 @@ if enable_disk_check == 'yes':
 
                         if age < minimum_age or filesize < minimum_filesize or ratio < minimum_ratio or (labels_disk and label not in labels_disk):
 
-                                if (isinstance(fallback1, (int, float)) and filesize >= minimum_filesize and age >= fallback1) and (labels_disk and label in labels_disk or not labels_disk):
+                                if (isinstance(fallback_age, (int, float)) and filesize >= minimum_filesize and age >= fallback_age) and (labels_disk and label in labels_disk or not labels_disk):
                                         fallback_torrents[oldest_torrent] = base_path, hash, filesize
-                                elif (isinstance(fallback2, (int, float)) and filesize >= minimum_filesize and ratio >= fallback2) and (labels_disk and label in labels_disk or not labels_disk):
+                                elif (isinstance(fallback_ratio, (int, float)) and filesize >= minimum_filesize and ratio >= fallback_ratio) and (labels_disk and label in labels_disk or not labels_disk):
                                         fallback_torrents[oldest_torrent] = base_path, hash, filesize
 
                                 del torrents[oldest_torrent]
