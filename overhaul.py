@@ -20,9 +20,9 @@ enable_disk_check = 'yes'
 
 # Filesize in Gigabytes
 minimum_filesize = 5
-minimum_ratio = 1.2
 # Age in Days
 minimum_age = 7
+minimum_ratio = 1.2
 
 # Fallback1 - Only the age of a torrent must be higher or equal to this number to be deleted - 'no' to disable
 fallback1 = 'no'
