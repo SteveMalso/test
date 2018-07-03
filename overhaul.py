@@ -54,7 +54,7 @@ labels_disk = []
 
 
 # IMDB Criteria - Fill to enable
-# Value Order - 1. IMDB Rating 2. Minimum Votes 3. Skip Foregin Movies ('yes'/'no')
+# Value Order - 1. IMDB Rating 2. Minimum Votes 3. Skip Foreign Movies ('yes'/'no')
 labels_imdb = {}
 
 # Example
