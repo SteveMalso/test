@@ -16,7 +16,7 @@ disk = os.statvfs('/')
 
 enable_disk_check = 'yes'
 
-# General rules
+# General Rules
 
 # Filesize in Gigabytes
 minimum_filesize = 5
@@ -30,8 +30,8 @@ fallback1 = 'no'
 # Fallback2 - Only the ratio of a torrent must be higher or equal to this number to be deleted - 'no' to disable
 fallback2 = 1.4
 
-# Tracker rules will override general rules and force the script to only delete torrents from specified trackers - Fill to enable
-# Value order - 1. Minimum Filesize (GB) 2. Minimum Age 3. Minimum Ratio 4. Fallback1 5. Fallback2
+# Tracker Rules will override general rules and force the script to only delete torrents from specified trackers - Fill to enable
+# Value Order - 1. Minimum Filesize (GB) 2. Minimum Age 3. Minimum Ratio 4. Fallback1 5. Fallback2
 trackers = {}
 
 # Example
