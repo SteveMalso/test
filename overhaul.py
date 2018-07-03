@@ -11,10 +11,10 @@ except:
 
 uses_netloc.append('scgi')
 
+enable_disk_check = 'yes'
+
 host = 'scgi://127.0.0.1:5000'
 disk = os.statvfs('/')
-
-enable_disk_check = 'yes'
 
 # General Rules
 
