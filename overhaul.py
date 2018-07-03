@@ -27,7 +27,7 @@ fallback2 = 1.4
 # Filesize in Gigabytes
 minimum_filesize = 5
 minimum_ratio = 1.2
-# Age in days
+# Age in Days
 minimum_age = 7
 
 # Tracker rules will override general rules and force the script to only delete torrents from specified trackers - Fill to enable
