@@ -43,7 +43,7 @@ trackers = {}
 #           }
 
 
-# Only delete torrents with labels in the list - Fill to enable
+# Only delete torrents that have labels in this list - Fill to enable
 labels_disk = []
 
 # Example
