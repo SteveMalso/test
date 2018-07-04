@@ -223,7 +223,7 @@ if enable_disk_check == 'yes':
                         hash = torrents[oldest_torrent][5]
 
                         if trackers:
-                                rule = [match for match in trackers for url in tracker if match in url[0]]
+                                rule = [rule for rule in trackers for url in tracker if rule in url[0]]
 
                                 if rule:
                                         rule = rule[0]
