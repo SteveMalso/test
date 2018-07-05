@@ -204,12 +204,13 @@ if enable_disk_check == 'yes':
                         hashes = xmlrpc('download_list', tuple([]))
 
                         for hash in hashes:
-                                date = datetime.utcfromtimestamp(xmlrpc('d.timestamp.finished', tuple([hash])))
-                                tracker = xmlrpc('t.multicall', (hash, '', 't.url='))
-                                filesize = round(xmlrpc('d.size_bytes', tuple([hash])) / (1024 * 1024 * 1024.0), 2)
-                                ratio = xmlrpc('d.ratio', tuple([hash])) / 1000.0
-                                label = urllib.unquote(xmlrpc('d.custom1', tuple([hash])))
-                                base_path = xmlrpc('d.base_path', tuple([hash]))
+                                hash = tuple([hash])
+                                date = datetime.utcfromtimestamp(xmlrpc('d.timestamp.finished', hash))
+                                tracker = xmlrpc('t.multicall', (hash[0], '', 't.url='))
+                                filesize = round(xmlrpc('d.size_bytes', hash) / (1024 * 1024 * 1024.0), 2)
+                                ratio = xmlrpc('d.ratio', hash) / 1000.0
+                                label = urllib.unquote(xmlrpc('d.custom1', hash))
+                                base_path = xmlrpc('d.base_path', hash)
                                 torrents[date] = tracker, filesize, ratio, label, base_path, hash
 
                 if fallback == 'no':
@@ -269,14 +270,14 @@ if enable_disk_check == 'yes':
                 else:
                         os.remove(base_path)
 
-                xmlrpc('d.erase', tuple([hash]))
+                xmlrpc('d.erase', hash)
 
                 if fallback == 'no':
                         del torrents[oldest_torrent]
                 else:
                         del fallback_torrents[oldest_torrent]
 
-                available_space = available_space + filesize
+                available_space += filesize
 
                 if not torrents and not fallback_torrents:
                         break
