@@ -70,7 +70,7 @@ labels_disk = {}
 #                     "HD" : [1, 5, 1.2, 15, 1.2],
 #               }
 
-# Only delete torrents with a label in your label dictionary
+# Only delete torrents with a label in your label dictionary (yes/no)
 labels_only = yes
 
 # IMDB Criteria - Fill to enable
