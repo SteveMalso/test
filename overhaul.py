@@ -233,15 +233,15 @@ if enable_disk_check == 'yes':
                                         rule = rule[0]
 
                                         if trackers[rule][0] == 'exclude':
+                                                pass
+
+                                        elif trackers[rule][0] == 'include':
                                                 del torrents[oldest_torrent]
 
                                                 if not torrents and not fallback_torrents:
                                                         break
 
                                                 continue
-
-                                        elif trackers[rule][0] == 'include':
-                                                pass
 
                                         else:
                                                 minimum_filesize = trackers[rule][0]
