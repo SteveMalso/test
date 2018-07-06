@@ -39,8 +39,8 @@ fallback_ratio = 1.4
 # End of General Rules
 
 # Tracker Rules will override General Rules - Fill to enable
-# exclude = exclude tracker
 # include = add tracker without rules
+# exclude = exclude tracker
 # Value Order - 1. Minimum Filesize (GB) 2. Minimum Age 3. Minimum Ratio 4. Fallback Age 5. Fallback Ratio
 trackers = {}
 
@@ -58,8 +58,8 @@ trackers = {}
 trackers_only = yes
 
 # Add/Exclude labels or set Label Rules - Label Rules will override tracker/general rules - Fill to enable
-# exclude = exclude label
 # include = add label without rules
+# exclude = exclude label
 # Value Order - 1. Minimum Filesize (GB) 2. Minimum Age 3. Minimum Ratio 4. Fallback Age 5. Fallback Ratio
 labels_disk = {}
 
