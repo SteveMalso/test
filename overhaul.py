@@ -39,6 +39,8 @@ fallback_ratio = 1.4
 # End of General Rules
 
 # Tracker Rules will override General Rules - Fill to enable
+# exclude = exclude tracker
+# include = add tracker without rules
 # Value Order - 1. Minimum Filesize (GB) 2. Minimum Age 3. Minimum Ratio 4. Fallback Age 5. Fallback Ratio
 trackers = {}
 
@@ -53,9 +55,9 @@ trackers = {}
 # Only delete torrents from trackers that have a tracker rule (yes/no)
 trackers_only = yes
 
-# Add or exclude labels or set Label Rules - Label Rules will override tracker/general rules - Fill to enable
-# exclude = Exclude labels
-# include = Add label without rules
+# Add/Exclude labels or set Label Rules - Label Rules will override tracker/general rules - Fill to enable
+# exclude = exclude label
+# include = add label without rules
 # Value Order - 1. Minimum Filesize (GB) 2. Minimum Age 3. Minimum Ratio 4. Fallback Age 5. Fallback Ratio
 labels_disk = {}
 
@@ -66,7 +68,7 @@ labels_disk = {}
 #                     "HD" : [1, 5, 1.2, 15, 1.2],
 #               }
 
-#Only delete torrents with a label in your label 
+# Only delete torrents with a label in your label dictionary
 labels_only = yes
 
 # IMDB Criteria - Fill to enable
