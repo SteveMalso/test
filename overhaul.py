@@ -253,7 +253,6 @@ if enable_disk_check == 'yes':
                                                         break
 
                                                 continue
-
                                         else:
                                                 override = 'yes'
                                                 minimum_filesize = labels_disk[label][0]
