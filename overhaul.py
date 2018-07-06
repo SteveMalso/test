@@ -232,10 +232,10 @@ if enable_disk_check == 'yes':
                                 if rule:
                                         rule = rule[0]
 
-                                        if trackers[rule][0] == 'exclude':
+                                        if trackers[rule][0] == 'include':
                                                 pass
 
-                                        elif trackers[rule][0] == 'include':
+                                        elif trackers[rule][0] == 'exclude':
                                                 del torrents[oldest_torrent]
 
                                                 if not torrents and not fallback_torrents:
