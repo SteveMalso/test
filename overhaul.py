@@ -55,7 +55,7 @@ trackers = {}
 #                     "apollo.rip" : [2, 5, 1.4, no, 1.8],
 #           }
 
-# Only delete torrents from trackers that have a tracker rule (yes/no)
+# Only delete torrents from trackers in your tracker dictionary (yes/no)
 trackers_only = yes
 
 # Add/Exclude labels or set Label Rules - Label Rules will override general/tracker rules - Fill to enable
@@ -72,7 +72,7 @@ labels_disk = {}
 #                     "HD" : [1, 5, 1.2, 15, 1.2],
 #               }
 
-# Only delete torrents with a label in your label dictionary (yes/no)
+# Only delete torrents with labels in your label dictionary (yes/no)
 labels_only = yes
 
 
