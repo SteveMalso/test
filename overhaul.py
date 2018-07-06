@@ -46,6 +46,8 @@ trackers = {}
 
 # Example
 #trackers = {
+#                     "demonoid.pw" : [include],
+#                     "hdme.eu" : [exclude],
 #                     "redacted.ch" : [1, 7, 1.2, no, no],
 #                     "hd-torrents.org" : [3, 5, 1.3, 9, 1.3],
 #                     "privatehd.to" : [5, 6, 1.2, 12, no],
