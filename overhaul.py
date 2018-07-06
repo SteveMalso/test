@@ -242,7 +242,6 @@ if enable_disk_check == 'yes':
                                                         break
 
                                                 continue
-
                                         else:
                                                 minimum_filesize = trackers[rule][0]
                                                 minimum_age = trackers[rule][1]
@@ -262,6 +261,7 @@ if enable_disk_check == 'yes':
 
                                 if (isinstance(fallback_age, (int, float)) and filesize >= minimum_filesize and age >= fallback_age) and (labels_disk and label in labels_disk or not labels_disk):
                                         fallback_torrents[oldest_torrent] = base_path, hash, filesize
+
                                 elif (isinstance(fallback_ratio, (int, float)) and filesize >= minimum_filesize and ratio >= fallback_ratio) and (labels_disk and label in labels_disk or not labels_disk):
                                         fallback_torrents[oldest_torrent] = base_path, hash, filesize
 
@@ -275,7 +275,6 @@ if enable_disk_check == 'yes':
                                         break
 
                                 continue
-
                 else:
                         oldest_torrent = min(fallback_torrents)
                         base_path = fallback_torrents[oldest_torrent][0]
