@@ -44,22 +44,30 @@ trackers = {}
 
 # Example
 #trackers = {
-#                   "redacted.ch" : [1, 7, 1.2, no, no],
-#                   "hd-torrents.org" : [3, 5, 1.3, 9, 1.3],
-#                   "privatehd.to" : [5, 6, 1.2, 12, no],
-#                   "apollo.rip" : [2, 5, 1.4, no, 1.8],
+#                     "redacted.ch" : [1, 7, 1.2, no, no],
+#                     "hd-torrents.org" : [3, 5, 1.3, 9, 1.3],
+#                     "privatehd.to" : [5, 6, 1.2, 12, no],
+#                     "apollo.rip" : [2, 5, 1.4, no, 1.8],
 #           }
 
 # Only delete torrents from trackers that have a tracker rule (yes/no)
 trackers_only = yes
 
-# Only delete torrents that have labels in this list - Fill to enable
-labels_disk = []
+# Add or exclude labels or set Label Rules - Label Rules will override tracker/general rules - Fill to enable
+# exclude = Exclude labels
+# include = Add label without rules
+# Value Order - 1. Minimum Filesize (GB) 2. Minimum Age 3. Minimum Ratio 4. Fallback Age 5. Fallback Ratio
+labels_disk = {}
 
 # Example
-# labels_disk = ['TV', 'Movies', 'Crap']
+# labels_disk = {
+#                     "Trash" : [include],
+#                     "TV" : [exclude],
+#                     "HD" : [1, 5, 1.2, 15, 1.2],
+#               }
 
-
+#Only delete torrents with a label in your label 
+labels_only = yes
 
 # IMDB Criteria - Fill to enable
 # Value Order - 1. Minimum IMDB Rating 2. Minimum Votes 3. Skip Foreign Movies (yes/no)
