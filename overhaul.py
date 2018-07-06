@@ -42,6 +42,7 @@ fallback_ratio = 1.4
 
 # include: use general rules
 # exclude: exclude tracker
+
 # Value Order - 1. Minimum Filesize (GB) 2. Minimum Age 3. Minimum Ratio 4. Fallback Age 5. Fallback Ratio
 trackers = {}
 
@@ -62,6 +63,7 @@ trackers_only = yes
 
 # include: use general/tracker rules
 # exclude: exclude label
+
 # Value Order - 1. Minimum Filesize (GB) 2. Minimum Age 3. Minimum Ratio 4. Fallback Age 5. Fallback Ratio
 labels_disk = {}
 
