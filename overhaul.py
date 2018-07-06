@@ -38,7 +38,7 @@ fallback_ratio = 1.4
 # End of General Rules
 
 
-# Tracker Rules will override General Rules - Fill to enable
+# Tracker Rules will override general rules - Fill to enable
 
 # include: use general rules
 # exclude: exclude tracker
