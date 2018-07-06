@@ -73,6 +73,8 @@ labels_disk = {}
 # Only delete torrents with a label in your label dictionary (yes/no)
 labels_only = yes
 
+
+
 # IMDB Criteria - Fill to enable
 # Value Order - 1. Minimum IMDB Rating 2. Minimum Votes 3. Skip Foreign Movies (yes/no)
 labels_imdb = {}
