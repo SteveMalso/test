@@ -24,9 +24,8 @@ disk = os.statvfs('/')
 
 # General Rules
 
-# Filesize in Gigabytes
+# Filesize in Gigabytes - Age in Days
 minimum_filesize = 5
-# Age in Days
 minimum_age = 7
 minimum_ratio = 1.2
 
