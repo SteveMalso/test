@@ -12,6 +12,9 @@ except:
 yes = 'yes'
 no = 'no'
 
+include = 'include'
+exclude = 'exclude'
+
 uses_netloc.append('scgi')
 
 enable_disk_check = yes
@@ -228,11 +231,24 @@ if enable_disk_check == 'yes':
 
                                 if rule:
                                         rule = rule[0]
-                                        minimum_filesize = trackers[rule][0]
-                                        minimum_age = trackers[rule][1]
-                                        minimum_ratio = trackers[rule][2]
-                                        fallback_age = trackers[rule][3]
-                                        fallback_ratio = trackers[rule][4]
+
+                                        if trackers[rule][0] == 'exclude':
+                                                del torrents[oldest_torrent]
+
+                                                if not torrents and not fallback_torrents:
+                                                        break
+
+                                                continue
+
+                                        elif trackers[rule][0] == 'include':
+                                                pass
+
+                                        else:
+                                                minimum_filesize = trackers[rule][0]
+                                                minimum_age = trackers[rule][1]
+                                                minimum_ratio = trackers[rule][2]
+                                                fallback_age = trackers[rule][3]
+                                                fallback_ratio = trackers[rule][4]
 
                                 if not rule and trackers_only == 'yes':
                                         del torrents[oldest_torrent]
@@ -259,6 +275,7 @@ if enable_disk_check == 'yes':
                                         break
 
                                 continue
+
                 else:
                         oldest_torrent = min(fallback_torrents)
                         base_path = fallback_torrents[oldest_torrent][0]
