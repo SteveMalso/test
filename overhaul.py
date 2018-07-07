@@ -249,17 +249,15 @@ if enable_disk_check == 'yes':
 
                                 if label in labels_disk:
 
-                                        if labels_disk[label][0] == 'include':
-                                                pass
-
-                                        elif labels_disk[label][0] == 'exclude':
+                                        if labels_disk[label][0] == 'exclude':
                                                 del torrents[oldest_torrent]
 
                                                 if not torrents and not fallback_torrents:
                                                         break
 
                                                 continue
-                                        else:
+
+                                        elif labels_disk[label][0] != 'include':
                                                 override = 'yes'
                                                 minimum_filesize = labels_disk[label][0]
                                                 minimum_age = labels_disk[label][1]
@@ -281,10 +279,7 @@ if enable_disk_check == 'yes':
                                 if rule:
                                         rule = rule[0]
 
-                                        if trackers[rule][0] == 'include':
-                                                pass
-
-                                        elif trackers[rule][0] == 'exclude':
+                                        if trackers[rule][0] == 'exclude':
                                                 del torrents[oldest_torrent]
 
                                                 if not torrents and not fallback_torrents:
@@ -292,7 +287,7 @@ if enable_disk_check == 'yes':
 
                                                 continue
 
-                                        elif override == 'no':
+                                        elif trackers[rule][0] != 'include' and override == 'no':
                                                 minimum_filesize = trackers[rule][0]
                                                 minimum_age = trackers[rule][1]
                                                 minimum_ratio = trackers[rule][2]
