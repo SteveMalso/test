@@ -65,14 +65,14 @@ trackers_only = yes
 # exclude: exclude label
 
 # Value Order - 1. Minimum Filesize (GB) 2. Minimum Age 3. Minimum Ratio 4. Fallback Age 5. Fallback Ratio
-labels_disk = {}
+labels = {}
 
 # Example
-# labels_disk = {
+#labels = {
 #                     "Trash" : [include],
 #                     "TV" : [exclude],
 #                     "HD" : [1, 5, 1.2, 15, 1.2],
-#               }
+#         }
 
 # Only delete torrents with labels in your label dictionary (yes/no)
 labels_only = yes
@@ -81,13 +81,13 @@ labels_only = yes
 
 # IMDB Criteria - Fill to enable
 # Value Order - 1. Minimum IMDB Rating 2. Minimum Votes 3. Skip Foreign Movies (yes/no)
-labels_imdb = {}
+imdb = {}
 
 # Example
-#labels_imdb = {
+#imdb = {
 #                     "Hollywood Blockbusters" : [7, 80000, yes],
 #                     "Bollywood Classics" : [8, 60000, no],
-#              }
+#       }
 
 
 class SCGIRequest(object):
@@ -170,7 +170,7 @@ class SCGIRequest(object):
 		return (xmlresp, headers)
 
 
-def imdb(torrent_name, minimum_rating, minimum_votes, skip_foreign):
+def imdb_search(torrent_name, minimum_rating, minimum_votes, skip_foreign):
         imdb = Imdb()
         torrent_info = PTN.parse(torrent_name)
 
@@ -202,11 +202,11 @@ torrent_name = str(sys.argv[1])
 torrent_label = str(sys.argv[2])
 torrent_size = int(sys.argv[3])
 
-if torrent_label in labels_imdb:
-        minimum_rating = labels_imdb[torrent_label][0]
-        minimum_votes = labels_imdb[torrent_label][1]
-        skip_foreign = labels_imdb[torrent_label][2]
-        imdb(torrent_name, minimum_rating, minimum_votes, skip_foreign)
+if torrent_label in imdb:
+        minimum_rating = imdb[torrent_label][0]
+        minimum_votes = imdb[torrent_label][1]
+        skip_foreign = imdb[torrent_label][2]
+        imdb_search(torrent_name, minimum_rating, minimum_votes, skip_foreign)
 
 if enable_disk_check == 'yes':
         torrent_size = round(torrent_size / (1024 * 1024 * 1024.0), 2)
@@ -245,11 +245,11 @@ if enable_disk_check == 'yes':
                         base_path = torrents[oldest_torrent][4]
                         hash = torrents[oldest_torrent][5]
 
-                        if labels_disk:
+                        if labels:
 
-                                if label in labels_disk:
+                                if label in labels:
 
-                                        if labels_disk[label][0] == 'exclude':
+                                        if labels[label][0] == 'exclude':
                                                 del torrents[oldest_torrent]
 
                                                 if not torrents and not fallback_torrents:
@@ -257,13 +257,13 @@ if enable_disk_check == 'yes':
 
                                                 continue
 
-                                        elif labels_disk[label][0] != 'include':
+                                        elif labels[label][0] != 'include':
                                                 override = 'yes'
-                                                minimum_filesize = labels_disk[label][0]
-                                                minimum_age = labels_disk[label][1]
-                                                minimum_ratio = labels_disk[label][2]
-                                                fallback_age = labels_disk[label][3]
-                                                fallback_ratio = labels_disk[label][4]
+                                                minimum_filesize = labels[label][0]
+                                                minimum_age = labels[label][1]
+                                                minimum_ratio = labels[label][2]
+                                                fallback_age = labels[label][3]
+                                                fallback_ratio = labels[label][4]
 
                                 elif labels_only == 'yes':
                                         del torrents[oldest_torrent]
