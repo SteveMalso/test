@@ -273,7 +273,7 @@ if enable_disk_check == 'yes':
 
                                         continue
 
-                        if trackers:
+                        if trackers and override == 'no':
                                 rule = [rule for rule in trackers for url in tracker if rule in url[0]]
 
                                 if rule:
@@ -287,7 +287,7 @@ if enable_disk_check == 'yes':
 
                                                 continue
 
-                                        elif trackers[rule][0] != 'include' and override == 'no':
+                                        elif trackers[rule][0] != 'include':
                                                 minimum_filesize = trackers[rule][0]
                                                 minimum_age = trackers[rule][1]
                                                 minimum_ratio = trackers[rule][2]
