@@ -59,7 +59,7 @@ trackers = {}
 # Only delete torrents from trackers in your tracker dictionary (yes/no)
 trackers_only = yes
 
-# Add/Exclude labels or set Label Rules - Label Rules will override general - Fill to enable
+# Add/Exclude labels or set Label Rules - Label Rules will override general/tracker rules - Fill to enable
 
 # include: use general/tracker rules
 # exclude: exclude label
@@ -77,11 +77,7 @@ labels = {}
 # Only delete torrents with labels in your label dictionary (yes/no)
 labels_only = yes
 
-# Label rules will override tracker rules if enabled
-override_trackers = yes
 
-# Exclude torrents without labels
-exclude_unlabelled = no
 
 # IMDB Criteria - Fill to enable
 # Value Order - 1. Minimum IMDB Rating 2. Minimum Votes 3. Skip Foreign Movies (yes/no)
@@ -263,16 +259,6 @@ if enable_disk_check == 'yes':
                         base_path = torrents[oldest_torrent][4]
                         hash = torrents[oldest_torrent][5]
 
-                        if exclude_unlabelled == 'yes':
-
-                                if not label:
-                                        del torrents[oldest_torrent]
-
-                                        if not torrents and not fallback_torrents:
-                                                break
-
-                                        continue
-
                         if labels:
 
                                 if label in labels:
@@ -286,14 +272,12 @@ if enable_disk_check == 'yes':
                                                 continue
 
                                         elif labels[label][0] != 'include':
-
-                                                if override_trackers == 'yes':
-                                                        override = 'yes'
-                                                        min_filesize = labels[label][0]
-                                                        min_age = labels[label][1]
-                                                        min_ratio = labels[label][2]
-                                                        fb_age = labels[label][3]
-                                                        fb_ratio = labels[label][4]
+                                                override = 'yes'
+                                                min_filesize = labels[label][0]
+                                                min_age = labels[label][1]
+                                                min_ratio = labels[label][2]
+                                                fb_age = labels[label][3]
+                                                fb_ratio = labels[label][4]
 
                                 elif labels_only == 'yes':
                                         del torrents[oldest_torrent]
