@@ -227,21 +227,21 @@ if enable_disk_check == 'yes':
                         for hash in hashes:
                                 hash = tuple([hash])
                                 date = datetime.utcfromtimestamp(xmlrpc('d.timestamp.finished', hash))
+                                label = urllib.unquote(xmlrpc('d.custom1', hash))
                                 tracker = xmlrpc('t.multicall', (hash[0], '', 't.url='))
                                 filesize = round(xmlrpc('d.size_bytes', hash) / (1024 * 1024 * 1024.0), 2)
                                 ratio = xmlrpc('d.ratio', hash) / 1000.0
-                                label = urllib.unquote(xmlrpc('d.custom1', hash))
                                 base_path = xmlrpc('d.base_path', hash)
-                                torrents[date] = tracker, filesize, ratio, label, base_path, hash
+                                torrents[date] = label, tracker, filesize, ratio, base_path, hash
 
                 if fallback == 'no':
                         override = 'no'
                         oldest_torrent = min(torrents)
                         age = (datetime.now() - oldest_torrent).days
-                        tracker = torrents[oldest_torrent][0]
-                        filesize = torrents[oldest_torrent][1]
-                        ratio = torrents[oldest_torrent][2]
-                        label = torrents[oldest_torrent][3]
+                        label = torrents[oldest_torrent][0]
+                        tracker = torrents[oldest_torrent][1]
+                        filesize = torrents[oldest_torrent][2]
+                        ratio = torrents[oldest_torrent][3]
                         base_path = torrents[oldest_torrent][4]
                         hash = torrents[oldest_torrent][5]
 
@@ -302,7 +302,7 @@ if enable_disk_check == 'yes':
 
                                         continue
 
-                        if age < minimum_age or filesize < minimum_filesize or ratio < minimum_ratio:
+                        if filesize < minimum_filesize or age < minimum_age or ratio < minimum_ratio:
 
                                 if fallback_age != 'no' and filesize >= minimum_filesize and age >= fallback_age:
                                         fallback_torrents[oldest_torrent] = base_path, hash, filesize
