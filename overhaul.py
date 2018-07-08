@@ -59,7 +59,7 @@ trackers = {}
 # Only delete torrents from trackers in your tracker dictionary (yes/no)
 trackers_only = yes
 
-# Add/Exclude labels or set Label Rules - Label Rules will override general/tracker rules - Fill to enable
+# Add/Exclude labels or set Label Rules - Label Rules will override general - Fill to enable
 
 # include: use general/tracker rules
 # exclude: exclude label
