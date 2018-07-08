@@ -216,6 +216,11 @@ if enable_disk_check == 'yes':
         torrent_size = round(torrent_size / (1024 * 1024 * 1024.0), 2)
         available_space = round(float(disk.f_bsize * disk.f_bavail) / 1024 / 1024 / 1024, 2)
         required_space = torrent_size + 5
+        min_filesize = minimum_filesize
+        min_age = minimum_age
+        min_ratio = minimum_ratio
+        fb_age = fallback_age
+        fb_ratio = fallback_ratio
         torrents = {}
         fallback_torrents = {}
         fallback = 'no'
