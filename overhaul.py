@@ -314,12 +314,12 @@ if enable_disk_check == 'yes':
 
                                         continue
 
-                        if filesize < minimum_filesize or age < minimum_age or ratio < minimum_ratio:
+                        if filesize < min_filesize or age < min_age or ratio < min_ratio:
 
-                                if fallback_age != 'no' and filesize >= minimum_filesize and age >= fallback_age:
+                                if fb_age != 'no' and filesize >= min_filesize and age >= fallback_age:
                                         fallback_torrents[oldest_torrent] = base_path, hash, filesize
 
-                                elif fallback_ratio != 'no' and filesize >= minimum_filesize and ratio >= fallback_ratio:
+                                elif fb_ratio != 'no' and filesize >= min_filesize and ratio >= fb_ratio:
                                         fallback_torrents[oldest_torrent] = base_path, hash, filesize
 
                                 del torrents[oldest_torrent]
