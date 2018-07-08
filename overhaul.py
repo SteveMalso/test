@@ -77,7 +77,8 @@ labels = {}
 # Only delete torrents with labels in your label dictionary (yes/no)
 labels_only = yes
 
-
+# Label rules will override tracker rules if enabled
+override_trackers = yes
 
 # IMDB Criteria - Fill to enable
 # Value Order - 1. Minimum IMDB Rating 2. Minimum Votes 3. Skip Foreign Movies (yes/no)
