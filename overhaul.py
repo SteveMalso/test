@@ -215,6 +215,7 @@ if enable_disk_check == 'yes':
         torrents = {}
         fallback_torrents = {}
         fallback = 'no'
+        override = 'no'
 
         while available_space < required_space:
 
