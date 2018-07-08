@@ -258,6 +258,8 @@ if enable_disk_check == 'yes':
 
                                 if label in labels:
 
+                                if label in labels:
+
                                         if labels[label][0] == 'exclude':
                                                 del torrents[oldest_torrent]
 
@@ -268,11 +270,11 @@ if enable_disk_check == 'yes':
 
                                         elif labels[label][0] != 'include':
                                                 override = 'yes'
-                                                minimum_filesize = labels[label][0]
-                                                minimum_age = labels[label][1]
-                                                minimum_ratio = labels[label][2]
-                                                fallback_age = labels[label][3]
-                                                fallback_ratio = labels[label][4]
+                                                min_filesize = labels[label][0]
+                                                min_age = labels[label][1]
+                                                min_ratio = labels[label][2]
+                                                fb_age = labels[label][3]
+                                                fb_ratio = labels[label][4]
 
                                 elif labels_only == 'yes':
                                         del torrents[oldest_torrent]
