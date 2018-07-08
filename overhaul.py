@@ -268,12 +268,14 @@ if enable_disk_check == 'yes':
                                                 continue
 
                                         elif labels[label][0] != 'include':
-                                                override = 'yes'
-                                                min_filesize = labels[label][0]
-                                                min_age = labels[label][1]
-                                                min_ratio = labels[label][2]
-                                                fb_age = labels[label][3]
-                                                fb_ratio = labels[label][4]
+
+                                                if override_trackers == 'yes':
+                                                        override = 'yes'
+                                                        min_filesize = labels[label][0]
+                                                        min_age = labels[label][1]
+                                                        min_ratio = labels[label][2]
+                                                        fb_age = labels[label][3]
+                                                        fb_ratio = labels[label][4]
 
                                 elif labels_only == 'yes':
                                         del torrents[oldest_torrent]
