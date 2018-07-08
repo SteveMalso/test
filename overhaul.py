@@ -243,12 +243,12 @@ if enable_disk_check == 'yes':
                 if fallback == 'no':
 
                         if override == 'yes':
-                                override = 'no'
                                 min_filesize = minimum_filesize
                                 min_age = minimum_age
                                 min_ratio = minimum_ratio
                                 fb_age = fallback_age
                                 fb_ratio = fallback_ratio
+                                override = 'no'
 
                         oldest_torrent = min(torrents)
                         age = (datetime.now() - oldest_torrent).days
@@ -258,6 +258,16 @@ if enable_disk_check == 'yes':
                         ratio = torrents[oldest_torrent][3]
                         base_path = torrents[oldest_torrent][4]
                         hash = torrents[oldest_torrent][5]
+
+                        if exclude_unlabelled == 'yes':
+
+                                if not label:
+                                        del torrents[oldest_torrent]
+
+                                        if not torrents and not fallback_torrents:
+                                                break
+
+                                        continue
 
                         if labels:
 
