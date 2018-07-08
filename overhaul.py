@@ -77,7 +77,7 @@ labels = {}
 # Only delete torrents with labels in your label dictionary (yes/no)
 labels_only = yes
 
-# Exclude torrents without labels
+# Exclude torrents without labels (yes/no)
 exclude_unlabelled = no
 
 
