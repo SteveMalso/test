@@ -268,10 +268,10 @@ if enable_disk_check == 'yes':
                                 if not label:
                                         del torrents[oldest_torrent]
 
-                                                if not torrents and not fallback_torrents:
-                                                        break
+                                        if not torrents and not fallback_torrents:
+                                                break
 
-                                                continue
+                                        continue
 
                         if labels:
 
