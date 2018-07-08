@@ -236,7 +236,15 @@ if enable_disk_check == 'yes':
                                 torrents[date] = label, tracker, filesize, ratio, base_path, hash
 
                 if fallback == 'no':
-                        override = 'no'
+
+                        if override == 'yes':
+                                override = 'no'
+                                min_filesize = minimum_filesize
+                                min_age = minimum_age
+                                min_ratio = minimum_ratio
+                                fb_age = fallback_age
+                                fb_ratio = fallback_ratio
+
                         oldest_torrent = min(torrents)
                         age = (datetime.now() - oldest_torrent).days
                         label = torrents[oldest_torrent][0]
