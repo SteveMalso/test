@@ -80,6 +80,9 @@ labels_only = yes
 # Label rules will override tracker rules if enabled
 override_trackers = yes
 
+# Exclude torrents without labels
+exclude_unlabelled = no
+
 # IMDB Criteria - Fill to enable
 # Value Order - 1. Minimum IMDB Rating 2. Minimum Votes 3. Skip Foreign Movies (yes/no)
 imdb = {}
