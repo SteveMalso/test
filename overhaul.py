@@ -258,8 +258,6 @@ if enable_disk_check == 'yes':
 
                                 if label in labels:
 
-                                if label in labels:
-
                                         if labels[label][0] == 'exclude':
                                                 del torrents[oldest_torrent]
 
