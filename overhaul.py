@@ -299,11 +299,12 @@ if enable_disk_check == 'yes':
                                                 continue
 
                                         elif trackers[rule][0] != 'include':
-                                                minimum_filesize = trackers[rule][0]
-                                                minimum_age = trackers[rule][1]
-                                                minimum_ratio = trackers[rule][2]
-                                                fallback_age = trackers[rule][3]
-                                                fallback_ratio = trackers[rule][4]
+                                                override = 'yes'
+                                                min_filesize = trackers[rule][0]
+                                                min_age = trackers[rule][1]
+                                                min_ratio = trackers[rule][2]
+                                                fb_age = trackers[rule][3]
+                                                fb_ratio = trackers[rule][4]
 
                                 elif trackers_only == 'yes':
                                         del torrents[oldest_torrent]
