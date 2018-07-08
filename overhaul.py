@@ -258,6 +258,16 @@ if enable_disk_check == 'yes':
                         base_path = torrents[oldest_torrent][4]
                         hash = torrents[oldest_torrent][5]
 
+                        if exclude_unlabelled == 'yes':
+
+                                if not label:
+                                        del torrents[oldest_torrent]
+
+                                                if not torrents and not fallback_torrents:
+                                                        break
+
+                                                continue
+
                         if labels:
 
                                 if label in labels:
