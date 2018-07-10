@@ -22,6 +22,9 @@ enable_disk_check = yes
 host = 'scgi://127.0.0.1:5000'
 disk = os.statvfs('/')
 
+# The amount of space (in Gigabytes) to be free on top of the size of the torrent
+buffer = 5
+
 # General Rules
 
 # Filesize in Gigabytes / Age in Days
@@ -213,7 +216,7 @@ if torrent_label in imdb:
 if enable_disk_check == 'yes':
         torrent_size = round(torrent_size / (1024 * 1024 * 1024.0), 2)
         available_space = round(float(disk.f_bsize * disk.f_bavail) / 1024 / 1024 / 1024, 2)
-        required_space = torrent_size + 5
+        required_space = torrent_size + buffer
         min_filesize = minimum_filesize
         min_age = minimum_age
         min_ratio = minimum_ratio
