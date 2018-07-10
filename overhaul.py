@@ -22,7 +22,7 @@ enable_disk_check = yes
 host = 'scgi://127.0.0.1:5000'
 disk = os.statvfs('/')
 
-# The amount of space (in Gigabytes) to be free on top of the size of the torrent
+# The amount of space (in Gigabytes) to be freed on top of the size of the torrent
 buffer = 5
 
 # General Rules
