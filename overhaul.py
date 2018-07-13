@@ -237,7 +237,7 @@ if enable_disk_check == 'yes':
                         filesize = round(xmlrpc('d.size_bytes', hash) / (1024 * 1024 * 1024.0), 2)
 
                         if download_progress == 0 and name in open('downloading.txt').read():
-                                available_space += filesize
+                                available_space -= filesize
 
                 with open('downloading.txt', 'w+') as file:
                         file.write(torrent_name)
