@@ -241,8 +241,8 @@ if enable_disk_check == 'yes':
                         if download_progress == 0 and name in qued:
                                 available_space -= filesize
 
-        with open('downloading.txt', 'w+') as text_file:
-                text_file.write(torrent_name)
+        with open('downloading.txt', 'w+') as txt_file:
+                txt_file.write(torrent_name)
 
         while available_space < required_space:
 
