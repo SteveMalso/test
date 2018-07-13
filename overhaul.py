@@ -230,13 +230,15 @@ if enable_disk_check == 'yes':
 
         if downloading:
 
+                qued = open('downloading.txt').readline()
+
                 for hash in downloading:
                         hash = tuple(hash)
                         download_progress = xmlrpc('d.down.total', hash)
                         name = xmlrpc('d.name', hash)
                         filesize = round(xmlrpc('d.size_bytes', hash) / (1024 * 1024 * 1024.0), 2)
 
-                        if download_progress == 0 and name in open('downloading.txt').readline():
+                        if download_progress == 0 and name in qued:
                                 available_space -= filesize
 
         with open('downloading.txt', 'w+') as text_file:
