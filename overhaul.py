@@ -232,11 +232,11 @@ if enable_disk_check == 'yes':
 
                 textfile = open('downloading.txt').readline()
 
-                for hash in downloading:
-                        hash = tuple(hash)
-                        progress = xmlrpc('d.down.total', hash)
-                        name = xmlrpc('d.name', hash)
-                        filesize = round(xmlrpc('d.size_bytes', hash) / (1024 * 1024 * 1024.0), 2)
+                for torrent in downloading:
+                        torrent = tuple(torrent)
+                        progress = xmlrpc('d.down.total', torrent)
+                        name = xmlrpc('d.name', torrent)
+                        filesize = round(xmlrpc('d.size_bytes', torrent) / (1024 * 1024 * 1024.0), 2)
 
                         if progress == 0 and name in textfile:
                                 available_space -= filesize
@@ -251,17 +251,17 @@ if enable_disk_check == 'yes':
                         fallback = 'yes'
 
                 if not torrents and fallback == 'no':
-                        hashes = xmlrpc('d.multicall2', ('', 'complete', 'd.hash='))
+                        completed = xmlrpc('d.multicall2', ('', 'complete', 'd.hash='))
 
-                        for hash in hashes:
-                                hash = tuple(hash)
-                                date = datetime.utcfromtimestamp(xmlrpc('d.timestamp.finished', hash))
-                                label = urllib.unquote(xmlrpc('d.custom1', hash))
-                                tracker = xmlrpc('t.multicall', (hash[0], '', 't.url='))
-                                filesize = round(xmlrpc('d.size_bytes', hash) / (1024 * 1024 * 1024.0), 2)
-                                ratio = xmlrpc('d.ratio', hash) / 1000.0
-                                base_path = xmlrpc('d.base_path', hash)
-                                torrents[date] = label, tracker, filesize, ratio, base_path, hash
+                        for torrent in completed:
+                                torrent = tuple(torrent)
+                                date = datetime.utcfromtimestamp(xmlrpc('d.timestamp.finished', torrent))
+                                label = urllib.unquote(xmlrpc('d.custom1', torrent))
+                                tracker = xmlrpc('t.multicall', (torrent[0], '', 't.url='))
+                                filesize = round(xmlrpc('d.size_bytes', torrent) / (1024 * 1024 * 1024.0), 2)
+                                ratio = xmlrpc('d.ratio', torrent) / 1000.0
+                                base_path = xmlrpc('d.base_path', torrent)
+                                torrents[date] = label, tracker, filesize, ratio, base_path, torrent
 
                 if fallback == 'no':
 
@@ -280,7 +280,7 @@ if enable_disk_check == 'yes':
                         filesize = torrents[oldest_torrent][2]
                         ratio = torrents[oldest_torrent][3]
                         base_path = torrents[oldest_torrent][4]
-                        hash = torrents[oldest_torrent][5]
+                        torrent = torrents[oldest_torrent][5]
 
                         if exclude_unlabelled == 'yes':
 
@@ -353,10 +353,10 @@ if enable_disk_check == 'yes':
                         if filesize < min_filesize or age < min_age or ratio < min_ratio:
 
                                 if fb_age != 'no' and filesize >= min_filesize and age >= fb_age:
-                                        fallback_torrents[oldest_torrent] = base_path, hash, filesize
+                                        fallback_torrents[oldest_torrent] = base_path, torrent, filesize
 
                                 elif fb_ratio != 'no' and filesize >= min_filesize and ratio >= fb_ratio:
-                                        fallback_torrents[oldest_torrent] = base_path, hash, filesize
+                                        fallback_torrents[oldest_torrent] = base_path, torrent, filesize
 
                                 del torrents[oldest_torrent]
 
@@ -371,7 +371,7 @@ if enable_disk_check == 'yes':
                 else:
                         oldest_torrent = min(fallback_torrents)
                         base_path = fallback_torrents[oldest_torrent][0]
-                        hash = fallback_torrents[oldest_torrent][1]
+                        torrent = fallback_torrents[oldest_torrent][1]
                         filesize = fallback_torrents[oldest_torrent][2]
 
                 if os.path.isdir(base_path):
@@ -379,7 +379,7 @@ if enable_disk_check == 'yes':
                 else:
                         os.remove(base_path)
 
-                xmlrpc('d.erase', hash)
+                xmlrpc('d.erase', torrent)
 
                 if fallback == 'no':
                         del torrents[oldest_torrent]
