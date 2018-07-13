@@ -251,10 +251,10 @@ if enable_disk_check == 'yes':
                         fallback = 'yes'
 
                 if not torrents and fallback == 'no':
-                        hashes = xmlrpc('download_list', tuple([]))
+                        hashes = xmlrpc('d.multicall2', ('', 'complete', 'd.hash='))
 
                         for hash in hashes:
-                                hash = tuple([hash])
+                                hash = tuple(hash)
                                 date = datetime.utcfromtimestamp(xmlrpc('d.timestamp.finished', hash))
                                 label = urllib.unquote(xmlrpc('d.custom1', hash))
                                 tracker = xmlrpc('t.multicall', (hash[0], '', 't.url='))
