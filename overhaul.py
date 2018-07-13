@@ -226,6 +226,24 @@ if enable_disk_check == 'yes':
         fallback_torrents = {}
         fallback = 'no'
         override = 'no'
+        downloading = xmlrpc('d.multicall2', ('', 'leeching', 'd.hash='))
+
+        if downloading:
+
+                for hash in downloading:
+                        hash = tuple(hash)
+                        download_progress = xmlrpc('d.down.total', hash)
+                        name = xmlrpc('d.name', hash)
+                        filesize = round(xmlrpc('d.size_bytes', hash) / (1024 * 1024 * 1024.0), 2)
+
+                        if download_progress == 0 and name in open('downloading.txt').read():
+                                available_space += filesize
+
+                with open('downloading.txt', 'w+') as file:
+                        file.write(torrent_name)
+        else:
+                with open('downloading.txt', 'w+') as file:
+                        file.write(torrent_name)
 
         while available_space < required_space:
 
