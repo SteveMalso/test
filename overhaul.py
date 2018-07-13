@@ -236,7 +236,7 @@ if enable_disk_check == 'yes':
                         name = xmlrpc('d.name', hash)
                         filesize = round(xmlrpc('d.size_bytes', hash) / (1024 * 1024 * 1024.0), 2)
 
-                        if download_progress == 0 and name in open('downloading.txt').read():
+                        if download_progress == 0 and name in open('downloading.txt').readline():
                                 available_space -= filesize
 
         with open('downloading.txt', 'w+') as text_file:
