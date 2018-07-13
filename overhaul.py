@@ -240,6 +240,7 @@ if enable_disk_check == 'yes':
 
                         if download_progress == 0 and name in latest_torrent:
                                 available_space -= filesize
+                                break
 
         with open('downloading.txt', 'w+') as txt_file:
                 txt_file.write(torrent_name)
