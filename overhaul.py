@@ -238,7 +238,7 @@ if enable_disk_check == 'yes':
                         name = xmlrpc('d.name', torrent)
                         filesize = round(xmlrpc('d.size_bytes', torrent) / (1024 * 1024 * 1024.0), 2)
 
-                        if progress == 0 and name in textfile:
+                        if progress == 0:
                                 available_space -= textfile
                                 break
 
