@@ -266,7 +266,7 @@ if enable_disk_check == 'yes':
                                 min_ratio = minimum_ratio
                                 fb_age = fallback_age
                                 fb_ratio = fallback_ratio
-                                override = 'no'
+                                override = False
 
                         oldest_torrent = min(torrents)
                         age = (datetime.now() - oldest_torrent).days
@@ -300,7 +300,7 @@ if enable_disk_check == 'yes':
                                                 continue
 
                                         elif labels[label][0] != 'include':
-                                                override = 'yes'
+                                                override = True
                                                 min_filesize = labels[label][0]
                                                 min_age = labels[label][1]
                                                 min_ratio = labels[label][2]
@@ -330,7 +330,7 @@ if enable_disk_check == 'yes':
                                                 continue
 
                                         elif trackers[rule][0] != 'include':
-                                                override = 'yes'
+                                                override = True
                                                 min_filesize = trackers[rule][0]
                                                 min_age = trackers[rule][1]
                                                 min_ratio = trackers[rule][2]
