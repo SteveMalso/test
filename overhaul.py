@@ -242,7 +242,7 @@ if enable_disk_check == 'yes':
 
         while available_space < required_space:
 
-                if not torrents and fallback == 'no' and fallback_torrents:
+                if not torrents and not fallback and fallback_torrents:
                         fallback = True
 
                 if not torrents and not fallback:
