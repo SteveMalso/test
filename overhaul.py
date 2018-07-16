@@ -261,12 +261,12 @@ if enable_disk_check == 'yes':
                 if not fallback:
 
                         if override:
+                                override = False
                                 min_filesize = minimum_filesize
                                 min_age = minimum_age
                                 min_ratio = minimum_ratio
                                 fb_age = fallback_age
                                 fb_ratio = fallback_ratio
-                                override = False
 
                         oldest_torrent = min(torrents)
                         age = (datetime.now() - oldest_torrent).days
