@@ -225,8 +225,8 @@ if enable_disk_check == 'yes':
         fb_ratio = fallback_ratio
         torrents = {}
         fallback_torrents = {}
-        fallback = 'no'
-        override = 'no'
+        fallback = False
+        override = False
 
         if downloading:
 
@@ -243,9 +243,9 @@ if enable_disk_check == 'yes':
         while available_space < required_space:
 
                 if not torrents and fallback == 'no' and fallback_torrents:
-                        fallback = 'yes'
+                        fallback = True
 
-                if not torrents and fallback == 'no':
+                if not torrents and not fallback:
                         completed = xmlrpc('d.multicall2', ('', 'complete', 'd.hash='))
 
                         for torrent in completed:
@@ -258,9 +258,9 @@ if enable_disk_check == 'yes':
                                 base_path = xmlrpc('d.base_path', torrent)
                                 torrents[date] = label, tracker, filesize, ratio, base_path, torrent
 
-                if fallback == 'no':
+                if not fallback:
 
-                        if override == 'yes':
+                        if override:
                                 min_filesize = minimum_filesize
                                 min_age = minimum_age
                                 min_ratio = minimum_ratio
@@ -315,7 +315,7 @@ if enable_disk_check == 'yes':
 
                                         continue
 
-                        if trackers and override == 'no':
+                        if trackers and not override:
                                 rule = [rule for rule in trackers for url in tracker if rule in url[0]]
 
                                 if rule:
@@ -376,7 +376,7 @@ if enable_disk_check == 'yes':
 
                 xmlrpc('d.erase', torrent)
 
-                if fallback == 'no':
+                if not fallback:
                         del torrents[oldest_torrent]
                 else:
                         del fallback_torrents[oldest_torrent]
