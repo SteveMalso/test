@@ -175,9 +175,21 @@ class SCGIRequest(object):
 		return (xmlresp, headers)
 
 
-def imdb_search(torrent_name, minimum_rating, minimum_votes, skip_foreign):
-        imdb = Imdb()
+def xmlrpc(methodname, params):
+        xmlreq = xmlrpclib.dumps(params, methodname)
+        xmlresp = SCGIRequest(host).send(xmlreq)
+        return xmlrpclib.loads(xmlresp)[0][0]
+
+torrent_name = str(sys.argv[1])
+torrent_label = str(sys.argv[2])
+torrent_size = int(sys.argv[3])
+
+if torrent_label in imdb:
+        minimum_rating = imdb[torrent_label][0]
+        minimum_votes = imdb[torrent_label][1]
+        skip_foreign = imdb[torrent_label][2]
         torrent_info = PTN.parse(torrent_name)
+        imdb = Imdb()
 
         try:
                 search = imdb.get_title_ratings(imdb.search_for_title(str(torrent_info['title']) + ' ' + str(torrent_info['year']))[0]['imdb_id'])
@@ -196,22 +208,6 @@ def imdb_search(torrent_name, minimum_rating, minimum_votes, skip_foreign):
                 if 'US' not in country:
                         print 'exit'
                         quit()
-
-
-def xmlrpc(methodname, params):
-        xmlreq = xmlrpclib.dumps(params, methodname)
-        xmlresp = SCGIRequest(host).send(xmlreq)
-        return xmlrpclib.loads(xmlresp)[0][0]
-
-torrent_name = str(sys.argv[1])
-torrent_label = str(sys.argv[2])
-torrent_size = int(sys.argv[3])
-
-if torrent_label in imdb:
-        minimum_rating = imdb[torrent_label][0]
-        minimum_votes = imdb[torrent_label][1]
-        skip_foreign = imdb[torrent_label][2]
-        imdb_search(torrent_name, minimum_rating, minimum_votes, skip_foreign)
 
 if enable_disk_check:
         downloading = xmlrpc('d.multicall2', ('', 'leeching', 'd.hash='))
