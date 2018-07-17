@@ -291,7 +291,7 @@ if enable_disk_check:
 
                                 if label in labels:
 
-                                        if labels[label][0] == exclude:
+                                        if not labels[label][0]:
                                                 del torrents[oldest_torrent]
 
                                                 if not torrents and not fallback_torrents:
@@ -321,7 +321,7 @@ if enable_disk_check:
                                 if rule:
                                         rule = rule[0]
 
-                                        if trackers[rule][0] == exclude:
+                                        if not trackers[rule][0]:
                                                 del torrents[oldest_torrent]
 
                                                 if not torrents and not fallback_torrents:
