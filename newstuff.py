@@ -9,11 +9,11 @@ try:
 except:
         pass
 
-yes = 'yes'
-no = 'no'
+yes = True
+no = False
 
-include = 'include'
-exclude = 'exclude'
+include = True
+exclude = False
 
 uses_netloc.append('scgi')
 
