@@ -277,7 +277,7 @@ if enable_disk_check == 'yes':
                         base_path = torrents[oldest_torrent][4]
                         torrent = torrents[oldest_torrent][5]
 
-                        if exclude_unlabelled == 'yes':
+                        if exclude_unlabelled:
 
                                 if not label:
                                         del torrents[oldest_torrent]
@@ -291,7 +291,7 @@ if enable_disk_check == 'yes':
 
                                 if label in labels:
 
-                                        if labels[label][0] == 'exclude':
+                                        if labels[label][0] == exclude:
                                                 del torrents[oldest_torrent]
 
                                                 if not torrents and not fallback_torrents:
@@ -299,7 +299,7 @@ if enable_disk_check == 'yes':
 
                                                 continue
 
-                                        elif labels[label][0] != 'include':
+                                        elif labels[label][0] != include:
                                                 override = True
                                                 min_filesize = labels[label][0]
                                                 min_age = labels[label][1]
@@ -307,7 +307,7 @@ if enable_disk_check == 'yes':
                                                 fb_age = labels[label][3]
                                                 fb_ratio = labels[label][4]
 
-                                elif labels_only == 'yes':
+                                elif labels_only:
                                         del torrents[oldest_torrent]
 
                                         if not torrents and not fallback_torrents:
@@ -321,7 +321,7 @@ if enable_disk_check == 'yes':
                                 if rule:
                                         rule = rule[0]
 
-                                        if trackers[rule][0] == 'exclude':
+                                        if trackers[rule][0] == exclude:
                                                 del torrents[oldest_torrent]
 
                                                 if not torrents and not fallback_torrents:
@@ -329,7 +329,7 @@ if enable_disk_check == 'yes':
 
                                                 continue
 
-                                        elif trackers[rule][0] != 'include':
+                                        elif trackers[rule][0] != include:
                                                 override = True
                                                 min_filesize = trackers[rule][0]
                                                 min_age = trackers[rule][1]
@@ -337,7 +337,7 @@ if enable_disk_check == 'yes':
                                                 fb_age = trackers[rule][3]
                                                 fb_ratio = trackers[rule][4]
 
-                                elif trackers_only == 'yes':
+                                elif trackers_only:
                                         del torrents[oldest_torrent]
 
                                         if not torrents and not fallback_torrents:
@@ -347,10 +347,10 @@ if enable_disk_check == 'yes':
 
                         if filesize < min_filesize or age < min_age or ratio < min_ratio:
 
-                                if fb_age != 'no' and filesize >= min_filesize and age >= fb_age:
+                                if fb_age and filesize >= min_filesize and age >= fb_age:
                                         fallback_torrents[oldest_torrent] = base_path, torrent, filesize
 
-                                elif fb_ratio != 'no' and filesize >= min_filesize and ratio >= fb_ratio:
+                                elif fb_ratio and filesize >= min_filesize and ratio >= fb_ratio:
                                         fallback_torrents[oldest_torrent] = base_path, torrent, filesize
 
                                 del torrents[oldest_torrent]
