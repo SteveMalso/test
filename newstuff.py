@@ -12,8 +12,8 @@ except:
 yes = True
 no = False
 
-include = True
-exclude = False
+include = 'include'
+exclude = 'exclude'
 
 uses_netloc.append('scgi')
 
