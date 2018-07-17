@@ -10,10 +10,10 @@ except:
         pass
 
 yes = True
-no = 'no'
+no = False
 
-include = 'include'
-exclude = 'exclude'
+include = True
+exclude = False
 
 uses_netloc.append('scgi')
 
@@ -287,7 +287,7 @@ if enable_disk_check:
 
                                 if label in labels:
 
-                                        if labels[label][0] == exclude:
+                                        if not labels[label][0]:
                                                 del torrents[oldest_torrent]
 
                                                 if not torrents and not fallback_torrents:
@@ -295,7 +295,7 @@ if enable_disk_check:
 
                                                 continue
 
-                                        elif labels[label][0] != include:
+                                        elif labels[label][0] is not include:
                                                 override = True
                                                 min_filesize = labels[label][0]
                                                 min_age = labels[label][1]
@@ -317,7 +317,7 @@ if enable_disk_check:
                                 if rule:
                                         rule = rule[0]
 
-                                        if trackers[rule][0] == exclude:
+                                        if not trackers[rule][0]:
                                                 del torrents[oldest_torrent]
 
                                                 if not torrents and not fallback_torrents:
@@ -325,7 +325,7 @@ if enable_disk_check:
 
                                                 continue
 
-                                        elif trackers[rule][0] != include:
+                                        elif trackers[rule][0] is not include:
                                                 override = True
                                                 min_filesize = trackers[rule][0]
                                                 min_age = trackers[rule][1]
@@ -343,10 +343,10 @@ if enable_disk_check:
 
                         if filesize < min_filesize or age < min_age or ratio < min_ratio:
 
-                                if fb_age != no and filesize >= min_filesize and age >= fb_age:
+                                if fb_age is not no and filesize >= min_filesize and age >= fb_age:
                                         fallback_torrents[oldest_torrent] = base_path, torrent, filesize
 
-                                elif fb_ratio != no and filesize >= min_filesize and ratio >= fb_ratio:
+                                elif fb_ratio is not no and filesize >= min_filesize and ratio >= fb_ratio:
                                         fallback_torrents[oldest_torrent] = base_path, torrent, filesize
 
                                 del torrents[oldest_torrent]
