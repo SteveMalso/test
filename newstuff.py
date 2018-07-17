@@ -10,7 +10,7 @@ except:
         pass
 
 yes = True
-no = False
+no = 'no'
 
 include = 'include'
 exclude = 'exclude'
