@@ -190,7 +190,7 @@ def imdb_search(torrent_name, minimum_rating, minimum_votes, skip_foreign):
                         print 'exit'
                         quit()
 
-        if skip_foreign == 'yes':
+        if skip_foreign:
                 country = imdb.get_title_versions(imdb.search_for_title(str(torrent_info['title']) + ' ' + str(torrent_info['year']))[0]['imdb_id'])['origins']
 
                 if 'US' not in country:
@@ -213,7 +213,7 @@ if torrent_label in imdb:
         skip_foreign = imdb[torrent_label][2]
         imdb_search(torrent_name, minimum_rating, minimum_votes, skip_foreign)
 
-if enable_disk_check == 'yes':
+if enable_disk_check:
         downloading = xmlrpc('d.multicall2', ('', 'leeching', 'd.hash='))
         torrent_size = round(torrent_size / (1024 * 1024 * 1024.0), 2)
         available_space = round(float(disk.f_bsize * disk.f_bavail) / 1024 / 1024 / 1024, 2)
