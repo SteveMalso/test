@@ -214,9 +214,9 @@ if torrent_label in imdb:
         imdb_search(torrent_name, minimum_rating, minimum_votes, skip_foreign)
 
 if enable_disk_check:
+        torrent_size /= 1073741824.0
         downloading = xmlrpc('d.multicall2', ('', 'leeching', 'd.hash='))
-        torrent_size = round(torrent_size / 1073741824.0, 2)
-        available_space = round(disk.f_bsize * disk.f_bavail / 1073741824.0, 2)
+        available_space = disk.f_bsize * disk.f_bavail / 1073741824.0
         required_space = torrent_size + buffer
         min_filesize = minimum_filesize
         min_age = minimum_age
@@ -253,7 +253,7 @@ if enable_disk_check:
                                 date = datetime.utcfromtimestamp(xmlrpc('d.timestamp.finished', torrent))
                                 label = urllib.unquote(xmlrpc('d.custom1', torrent))
                                 tracker = xmlrpc('t.multicall', (torrent[0], '', 't.url='))
-                                filesize = round(xmlrpc('d.size_bytes', torrent) / 1073741824.0, 2)
+                                filesize = xmlrpc('d.size_bytes', torrent) / 1073741824.0
                                 ratio = xmlrpc('d.ratio', torrent) / 1000.0
                                 base_path = xmlrpc('d.base_path', torrent)
                                 torrents[date] = label, tracker, filesize, ratio, base_path, torrent
