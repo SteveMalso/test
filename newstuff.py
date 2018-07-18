@@ -250,12 +250,19 @@ if enable_disk_check:
 
                         for torrent in completed:
                                 torrent = tuple(torrent)
+                                print torrent
                                 date = datetime.utcfromtimestamp(xmlrpc('d.timestamp.finished', torrent))
+                                print date
                                 label = urllib.unquote(xmlrpc('d.custom1', torrent))
+                                print label
                                 tracker = xmlrpc('t.multicall', (torrent[0], '', 't.url='))
+                                print tracker
                                 filesize = xmlrpc('d.size_bytes', torrent) / 1073741824.0
+                                print filesize
                                 ratio = xmlrpc('d.ratio', torrent) / 1000.0
+                                print ratio
                                 base_path = xmlrpc('d.base_path', torrent)
+                                print base_path
                                 torrents[date] = label, tracker, filesize, ratio, base_path, torrent
 
                 if not fallback:
