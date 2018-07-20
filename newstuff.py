@@ -234,10 +234,10 @@ if enable_disk_check:
                         progress = xmlrpc('d.down.total', tuple(torrent))
 
                         if progress is 0:
-                                available_space -= int(open('downloading.txt').readline())
+                                available_space -= int(open('torrent.txt').readline())
                                 break
 
-        with open('downloading.txt', 'w+') as textfile:
+        with open('torrent.txt', 'w+') as textfile:
                 textfile.write(str(torrent_size))
 
         while available_space < required_space:
